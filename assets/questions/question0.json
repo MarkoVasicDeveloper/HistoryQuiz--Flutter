@@ -1,0 +1,32 @@
+[
+    {
+        "body" : "Ko je prvi Srpski arhiepiskop?",
+        "answers": ["Sveti Sava", "Arsenije Carnojevic", "Stefan Decanski", "Neko treci"],
+        "correctAnswer": "Sveti Sava",
+        "moderate": "easy"
+    },
+    {
+        "body" : "Kada je bio Kosovski boj?",
+        "answers": ["1389", "1523", "1941", "1918"],
+        "correctAnswer": "1389",
+        "moderate": "medium"
+    },
+    {
+        "body" : "Kako se zove prvi i jedini Srpski car?",
+        "answers": ["Dusan", "Milos", "Joakim", "Pavle"],
+        "correctAnswer": "Dusan",
+        "moderate": "easy"
+    },
+    {
+        "body" : "Na cijoj strani je bila Srbija u drugom svetskom ratu",
+        "answers": ["Antante", "Sila Osovine", "Neutralna", "Japana"],
+        "correctAnswer": "Antante",
+        "moderate": "easy"
+    },
+    {
+        "body" : "Kada je bombardovan Beograd u drugom Svetskom ratu?",
+        "answers": ["6. avgust", "6. maja", "6.septembra", "6. aprila"],
+        "correctAnswer": "6. aprila",
+        "moderate": "hard"
+    }
+]
