@@ -33,7 +33,9 @@ class MyApp extends StatelessWidget {
           title: 'Istorija Srbije',
           initialRoute: '/home',
           routes: {
-            '/home': (context) => const HomeScreen(),
+            '/home': (context) => HomeScreen(
+                  userProvider: userProvider,
+                ),
           },
         ),
       ),
