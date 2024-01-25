@@ -24,7 +24,7 @@ class Header extends StatelessWidget {
         MenuButton(onPressed: onMenu),
         Asset(icon: 'heart.png', number: userProvider.userModel.hearts),
         Asset(icon: 'diamond.png', number: userProvider.userModel.diamonds),
-        WheelButton(onPressed: onRotate),
+        const WheelButton(),
       ],
     );
   }

@@ -3,9 +3,7 @@ import 'package:istorija_srbije/core/shared/animations/entrance_transition.dart'
 import 'package:istorija_srbije/core/shared/animations/pulsating.dart';
 
 class WheelButton extends StatelessWidget {
-  final VoidCallback onPressed;
-
-  const WheelButton({Key? key, required this.onPressed}) : super(key: key);
+  const WheelButton({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -18,13 +16,13 @@ class WheelButton extends StatelessWidget {
       initialX: 0.0,
       initialY: 0.0,
       offsetXPercentage: 0.06,
-      offsetYPercentage: 0.0,
+      offsetYPercentage: -0.04,
       child: Pulsating(
         child: SizedBox(
           width: MediaQuery.of(context).size.width * 0.2,
           height: 20,
           child: ElevatedButton(
-            onPressed: onPressed,
+            onPressed: () => Navigator.pushNamed(context, '/wheel'),
             style: ElevatedButton.styleFrom(
               padding: const EdgeInsets.all(1.0),
             ),

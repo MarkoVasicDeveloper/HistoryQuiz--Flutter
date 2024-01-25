@@ -16,7 +16,7 @@ class MenuButton extends StatelessWidget {
       initialX: 0.0,
       initialY: 0.0,
       offsetXPercentage: 0.1,
-      offsetYPercentage: 0.0,
+      offsetYPercentage: -0.04,
       child: Material(
         color: Colors.transparent,
         child: SizedBox(
