@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:istorija_srbije/core/shared/widget/background_wrapper.dart';
 import 'package:istorija_srbije/provider/user/user_provider.dart';
 import 'package:istorija_srbije/provider/user/user_service.dart';
 import 'package:istorija_srbije/screens/home/home_screen.dart';
@@ -25,12 +26,16 @@ class MyApp extends StatelessWidget {
       providers: [
         ChangeNotifierProvider(create: (_) => userProvider),
       ],
-      child: MaterialApp(
-        title: 'Istorija Srbije',
-        initialRoute: '/home',
-        routes: {
-          '/home': (context) => const HomeScreen(),
-        },
+      child: BackgroundWrapper(
+        colorFilter: ColorFilter.mode(
+            Colors.black54.withOpacity(0.9), BlendMode.multiply),
+        child: MaterialApp(
+          title: 'Istorija Srbije',
+          initialRoute: '/home',
+          routes: {
+            '/home': (context) => const HomeScreen(),
+          },
+        ),
       ),
     );
   }

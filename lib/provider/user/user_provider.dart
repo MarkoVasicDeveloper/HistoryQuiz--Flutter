@@ -34,7 +34,6 @@ class UserProvider with ChangeNotifier {
     final Map<String, dynamic> decodedData =
         await _userService.loadUserData(_userModel);
     _userModel = UserModel.fromJson(decodedData);
-    print(_userModel.diamonds);
     notifyListeners();
   }
 
