@@ -45,7 +45,9 @@ class WheelScreenState extends State<WheelScreen> {
               maxWidth: MediaQuery.of(context).size.width * 0.95,
               maxHeight: MediaQuery.of(context).size.height * 0.6,
             ),
-            child: Wheel(controller: _controller.stream),
+            child: Wheel(
+                controller: _controller.stream,
+                userProvider: widget.userProvider),
           ),
         ),
         SpinButton(

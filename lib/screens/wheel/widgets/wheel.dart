@@ -3,12 +3,16 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_fortune_wheel/flutter_fortune_wheel.dart';
 import 'package:istorija_srbije/core/constant/fortune_items.dart';
+import 'package:istorija_srbije/provider/user/user_provider.dart';
+import 'package:istorija_srbije/screens/wheel/widgets/congratilation.dart';
 import 'package:istorija_srbije/screens/wheel/widgets/fortune_item_comp.dart';
 
 class Wheel extends StatefulWidget {
   final Stream<int> controller;
+  final UserProvider userProvider;
 
-  const Wheel({Key? key, required this.controller}) : super(key: key);
+  const Wheel({Key? key, required this.controller, required this.userProvider})
+      : super(key: key);
 
   @override
   WheelState createState() => WheelState();
@@ -46,7 +50,16 @@ class WheelState extends State<Wheel> {
             alignment: Alignment.bottomLeft,
             selected: widget.controller,
             animateFirst: false,
-            onAnimationEnd: () {},
+            onAnimationEnd: () {
+              showDialog(
+                  context: context,
+                  builder: (BuildContext context) {
+                    return Congratilation(
+                      item: items[item],
+                      userProvider: widget.userProvider,
+                    );
+                  });
+            },
             indicators: [
               FortuneIndicator(
                   alignment: Alignment.topCenter,
