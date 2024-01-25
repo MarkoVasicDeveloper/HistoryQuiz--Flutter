@@ -4,6 +4,7 @@ import 'package:istorija_srbije/screens/home/widgets/header.dart';
 import 'package:istorija_srbije/screens/home/widgets/home_img.dart';
 import 'package:istorija_srbije/screens/home/widgets/home_title.dart';
 import 'package:istorija_srbije/screens/home/widgets/navigate_button.dart';
+import 'package:istorija_srbije/screens/home/widgets/username_input.dart';
 
 class HomeScreen extends StatefulWidget {
   final UserProvider userProvider;
@@ -20,6 +21,17 @@ class HomeState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
+    if (widget.userProvider.userModel.username.isEmpty) {
+      return Align(
+        alignment: Alignment.center,
+        child: ElevatedButton(
+          onPressed: () {
+            showUsernameInputDialog(context, widget.userProvider);
+          },
+          child: const Text('Unesite username'),
+        ),
+      );
+    }
     return Stack(
       children: [
         AnimatedPositioned(
