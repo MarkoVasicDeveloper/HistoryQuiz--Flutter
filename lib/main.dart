@@ -37,7 +37,9 @@ class MyApp extends StatelessWidget {
             '/home': (context) => HomeScreen(
                   userProvider: userProvider,
                 ),
-            '/wheel': (context) => const WheelScreen()
+            '/wheel': (context) => WheelScreen(
+                  userProvider: userProvider,
+                )
           },
         ),
       ),
