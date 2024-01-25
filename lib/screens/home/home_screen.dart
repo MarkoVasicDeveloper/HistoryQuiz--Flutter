@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:istorija_srbije/provider/user/user_provider.dart';
 import 'package:istorija_srbije/screens/home/widgets/header.dart';
+import 'package:istorija_srbije/screens/home/widgets/home_img.dart';
 import 'package:istorija_srbije/screens/home/widgets/home_title.dart';
+import 'package:istorija_srbije/screens/home/widgets/navigate_button.dart';
 
 class HomeScreen extends StatefulWidget {
   final UserProvider userProvider;
@@ -40,6 +42,8 @@ class HomeState extends State<HomeScreen> {
                 }),
               ),
               const HomeTitle(),
+              const HomeImg(),
+              NavigateButton(onPress: () {}, title: 'Pocni kviz')
             ],
           ),
         ),
