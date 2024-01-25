@@ -20,6 +20,17 @@ class HomeState extends State<HomeScreen> {
   bool isRotatedComponentVisible = false;
 
   @override
+  void initState() {
+    super.initState();
+
+    if (widget.userProvider.userModel.freeSpin) {
+      Future.delayed(Duration.zero, () {
+        Navigator.pushNamed(context, '/wheel');
+      });
+    }
+  }
+
+  @override
   Widget build(BuildContext context) {
     if (widget.userProvider.userModel.username.isEmpty) {
       return Align(
@@ -32,6 +43,7 @@ class HomeState extends State<HomeScreen> {
         ),
       );
     }
+
     return Stack(
       children: [
         AnimatedPositioned(
