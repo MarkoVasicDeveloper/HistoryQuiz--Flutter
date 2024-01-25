@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:istorija_srbije/provider/user/user_provider.dart';
 import 'package:istorija_srbije/screens/home/widgets/header.dart';
+import 'package:istorija_srbije/screens/home/widgets/home_title.dart';
 
 class HomeScreen extends StatefulWidget {
   final UserProvider userProvider;
@@ -37,7 +38,8 @@ class HomeState extends State<HomeScreen> {
                 onRotate: () => setState(() {
                   isRotatedComponentVisible = !isRotatedComponentVisible;
                 }),
-              )
+              ),
+              const HomeTitle(),
             ],
           ),
         ),
