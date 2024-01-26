@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:istorija_srbije/provider/user/user_provider.dart';
+import 'package:istorija_srbije/screens/question/service/check_answer.dart';
 import 'package:istorija_srbije/screens/question/service/question_service.dart';
 import 'package:istorija_srbije/screens/question/widget/answers/answer.dart';
 
@@ -34,7 +35,13 @@ class AnswerContainer extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             for (String answer in currentQuestion['answers'])
-              Answer(answer: answer, callback: () {}),
+              Answer(
+                  answer: answer,
+                  callback: () async {
+                    final index = await checkAnswer(answer.toString(), context,
+                        questionsService, currentQuestionIndex, userProvider);
+                    updateState(newIndex: index);
+                  }),
           ],
         ),
       ),

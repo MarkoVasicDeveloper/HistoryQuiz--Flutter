@@ -1,3 +1,3 @@
-const wrongAnswer = "sounds/wrong_answer.mp3";
-const correctAnswer = "sounds/win.wav";
-const applause = "sounds/applause.wav";
+const wrongAnswerPath = "sounds/wrong_answer.mp3";
+const correctAnswerPath = "sounds/win.wav";
+const applausePath = "sounds/applause.wav";

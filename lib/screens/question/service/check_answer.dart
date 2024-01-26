@@ -7,32 +7,33 @@ import 'package:istorija_srbije/core/global/audio_player.dart';
 import 'package:istorija_srbije/core/shared/animations/answer.dart';
 import 'package:istorija_srbije/core/shared/animations/in_row.dart';
 import 'package:istorija_srbije/core/shared/widget/interesting_facts.dart';
+import 'package:istorija_srbije/provider/user/user_provider.dart';
+import 'package:istorija_srbije/screens/question/service/question_service.dart';
 
-Future<int> checkAnswer(
-    answer, context, loadQuestions, currentQuestionIndex, userData) async {
+Future<int> checkAnswer(answer, context, QuestionsService loadQuestions,
+    currentQuestionIndex, UserProvider userProvider) async {
   final question = loadQuestions.questions[currentQuestionIndex];
   int points = difficultyPoints[question['moderate']] ?? 0;
 
   final correctAnswer = question['correctAnswer'];
-  final hearts = userData.userData.hearts;
-  final currentInRow = userData.userData.success.currentInRow;
-  userData.setSuccessTotal();
+  final hearts = userProvider.userModel.hearts;
+  final currentInRow = userProvider.userModel.success.currentInRow;
+  userProvider.setSuccessTotal();
 
   if (correctAnswer == answer) {
-    userData.setSuccessCorrect();
-    userData.setCurrentInRow(false);
-    userData.setPoints(points);
+    userProvider.setSuccessCorrect();
+    userProvider.setCurrentInRow(false);
+    userProvider.setPoints(points);
 
     final sound = (currentInRow + 1) % 5 == 0 && currentInRow != 0
-        ? AssetSource(applause)
-        : AssetSource(correctAnswer);
-
+        ? AssetSource(applausePath)
+        : AssetSource(correctAnswerPath);
     AudioPlayerSingleton().audioPlayer.play(sound);
 
     if ((currentInRow + 1) % 5 == 0 && currentInRow != 0) {
       await InRowAnimation.showOverlayInRow(
           context: context, row: ((currentInRow + 1) / 5) ~/ 1);
-      userData.setHearts(hearts + (currentInRow + 1) / 5, null);
+      userProvider.setHearts((hearts + (currentInRow + 1) / 5) ~/ 1, null);
     } else {
       await AnswerAnimation.showOverlay(
         correct: correctAnswer == answer,
@@ -40,18 +41,18 @@ Future<int> checkAnswer(
       );
     }
   } else {
-    userData.setSuccessWrong();
-    userData.setCurrentInRow(true);
+    userProvider.setSuccessWrong();
+    userProvider.setCurrentInRow(true);
 
     Vibrate.vibrate();
-    AudioPlayerSingleton().audioPlayer.play(AssetSource(wrongAnswer));
+    AudioPlayerSingleton().audioPlayer.play(AssetSource(wrongAnswerPath));
 
     await AnswerAnimation.showOverlay(
       correct: correctAnswer == answer,
       context: context,
     );
 
-    userData.setHearts(hearts - 1, () async {
+    userProvider.setHearts(hearts - 1, () async {
       await Future.delayed(const Duration(milliseconds: 1730));
       Navigator.pushReplacementNamed(context, '/home');
     });
