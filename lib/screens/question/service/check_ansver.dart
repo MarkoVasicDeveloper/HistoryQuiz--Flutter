@@ -6,6 +6,7 @@ import 'package:istorija_srbije/core/constant/sound.dart';
 import 'package:istorija_srbije/core/global/audio_player.dart';
 import 'package:istorija_srbije/core/shared/animations/answer.dart';
 import 'package:istorija_srbije/core/shared/animations/in_row.dart';
+import 'package:istorija_srbije/core/shared/widget/interesting_facts.dart';
 
 Future<int> checkAnswer(
     answer, context, loadQuestions, currentQuestionIndex, userData) async {
@@ -55,6 +56,17 @@ Future<int> checkAnswer(
       Navigator.pushReplacementNamed(context, '/home');
     });
   }
+  showDialog(
+    context: context,
+    builder: (BuildContext context) {
+      return const InterestingFacts(
+        imageUrl:
+            'https://upload.wikimedia.org/wikipedia/commons/thumb/a/af/Great_serb_migration-sr.png/256px-Great_serb_migration-sr.png',
+        text:
+            'Neki tekst o pitanju.Neki tekst o pitanju.Neki tekst o pitanju.Neki tekst o pitanju.Neki tekst o pitanju.Neki tekst o pitanju.Neki tekst o pitanju.Neki tekst o pitanju.Neki tekst o pitanju.Neki tekst o pitanju.Neki tekst o pitanju.Neki tekst o pitanju.Neki tekst o pitanju.Neki tekst o pitanju.Neki tekst o pitanju.Neki tekst o pitanju.Neki tekst o pitanju.Neki tekst o pitanju.Neki tekst o pitanju.',
+      );
+    },
+  );
 
   if (currentQuestionIndex == loadQuestions.questions.length - 1) {
     loadQuestions.loadQuestions();
