@@ -3,6 +3,7 @@ import 'package:istorija_srbije/core/shared/widget/background_wrapper.dart';
 import 'package:istorija_srbije/provider/user/user_provider.dart';
 import 'package:istorija_srbije/provider/user/user_service.dart';
 import 'package:istorija_srbije/screens/home/home_screen.dart';
+import 'package:istorija_srbije/screens/question/question_screen.dart';
 import 'package:istorija_srbije/screens/wheel/wheel_screen.dart';
 import 'package:provider/provider.dart';
 
@@ -39,7 +40,9 @@ class MyApp extends StatelessWidget {
                 ),
             '/wheel': (context) => WheelScreen(
                   userProvider: userProvider,
-                )
+                ),
+            '/questions': (context) =>
+                QuestionScreen(userProvider: userProvider),
           },
         ),
       ),

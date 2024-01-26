@@ -67,7 +67,9 @@ class HomeState extends State<HomeScreen> {
               ),
               const HomeTitle(),
               const HomeImg(),
-              NavigateButton(onPress: () {}, title: 'Pocni kviz')
+              NavigateButton(
+                  onPress: () => Navigator.pushNamed(context, '/questions'),
+                  title: 'Pocni kviz')
             ],
           ),
         ),

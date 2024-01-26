@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:istorija_srbije/core/shared/widget/background_wrapper.dart';
 import 'package:istorija_srbije/provider/user/user_provider.dart';
 import 'package:istorija_srbije/screens/question/service/question_service.dart';
+import 'package:istorija_srbije/screens/question/widget/question_asset.dart';
 
 class QuestionScreen extends StatefulWidget {
   final UserProvider userProvider;
@@ -53,7 +55,27 @@ class QuestionScreenState extends State<QuestionScreen> {
 
     final currentQuestion = questionsService.questions[currentQuestionIndex];
 
-    // TODO: implement build
-    throw UnimplementedError();
+    return Scaffold(
+      extendBodyBehindAppBar: true,
+      appBar: AppBar(
+        backgroundColor: Colors.transparent,
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back, color: Colors.white),
+          onPressed: () => Navigator.pushReplacementNamed(context, '/home'),
+        ),
+      ),
+      body: BackgroundWrapper(
+        colorFilter: ColorFilter.mode(
+          Colors.black54.withOpacity(0.9),
+          BlendMode.multiply,
+        ),
+        child: Padding(
+          padding: const EdgeInsets.fromLTRB(8.0, 40.0, 8.0, 8.0),
+          child: Column(
+            children: [QuestionsAssets(userProvider: widget.userProvider)],
+          ),
+        ),
+      ),
+    );
   }
 }
