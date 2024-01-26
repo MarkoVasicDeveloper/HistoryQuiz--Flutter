@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:istorija_srbije/components/asset/asset.dart';
+import 'package:istorija_srbije/core/shared/widget/asset.dart';
 import 'package:istorija_srbije/provider/user/user_provider.dart';
 
 class QuestionsAssets extends StatelessWidget {

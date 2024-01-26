@@ -3,6 +3,7 @@ import 'package:istorija_srbije/provider/user/user_provider.dart';
 import 'package:istorija_srbije/screens/home/widgets/header.dart';
 import 'package:istorija_srbije/screens/home/widgets/home_img.dart';
 import 'package:istorija_srbije/screens/home/widgets/home_title.dart';
+import 'package:istorija_srbije/screens/home/widgets/menu/menu.dart';
 import 'package:istorija_srbije/screens/home/widgets/navigate_button.dart';
 import 'package:istorija_srbije/screens/home/widgets/username_input.dart';
 
@@ -69,10 +70,11 @@ class HomeState extends State<HomeScreen> {
               const HomeImg(),
               NavigateButton(
                   onPress: () => Navigator.pushNamed(context, '/questions'),
-                  title: 'Pocni kviz')
+                  title: 'Pocni kviz'),
             ],
           ),
         ),
+        Menu(userProvider: widget.userProvider, isMenuOpen: isMenuOpen)
       ],
     );
   }

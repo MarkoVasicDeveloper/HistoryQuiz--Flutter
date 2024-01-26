@@ -12,5 +12,9 @@ class AudioPlayerSingleton {
 
   AudioPlayer get audioPlayer => _audioPlayer;
 
+  void setVolumeFromUserProvider(volume) {
+    _audioPlayer.setVolume(volume);
+  }
+
   AudioPlayerSingleton._internal();
 }

@@ -70,7 +70,7 @@ class UserModel {
   }
 
   void setSettings(bool? notification, int? volume) {
-    if (notification!) settings.notification = notification;
+    if (notification != null) settings.notification = notification;
     if (volume != null) settings.volume = volume;
   }
 
