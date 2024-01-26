@@ -1,13 +1,12 @@
-import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
-import 'package:istorija_srbije/core/global/audio_player.dart';
+import 'package:istorija_srbije/core/constant/difficulty_points.dart';
 import 'package:istorija_srbije/core/shared/widget/background_wrapper.dart';
 import 'package:istorija_srbije/core/shared/widget/diamond_heart_offer.dart';
 import 'package:istorija_srbije/provider/user/user_provider.dart';
+import 'package:istorija_srbije/screens/question/service/help_service.dart';
 import 'package:istorija_srbije/screens/question/service/question_service.dart';
 import 'package:istorija_srbije/screens/question/service/shuffle.dart';
 import 'package:istorija_srbije/screens/question/widget/answers/answers_container.dart';
-import 'package:istorija_srbije/screens/question/widget/help/help_alert.dart';
 import 'package:istorija_srbije/screens/question/widget/help/help_button.dart';
 import 'package:istorija_srbije/screens/question/widget/question_asset.dart';
 import 'package:istorija_srbije/screens/question/widget/question_container.dart';
@@ -82,7 +81,7 @@ class QuestionScreenState extends State<QuestionScreen> {
     }
 
     final currentQuestion = questionsService.questions[currentQuestionIndex];
-
+    final points = difficultyPoints[currentQuestion['moderate']].toString();
     return Scaffold(
       extendBodyBehindAppBar: true,
       appBar: AppBar(
@@ -110,13 +109,23 @@ class QuestionScreenState extends State<QuestionScreen> {
                   HelpButton(
                       text: '50/50',
                       right: null,
-                      onTap: fifty,
+                      onTap: () => fifty(currentQuestion, widget.userProvider,
+                          offer, context, updateState),
                       icon: Icons.filter_2_rounded,
                       img: 'assets/diamond.png'),
+                  Text(
+                    points,
+                    style: TextStyle(
+                        color: getColor(points),
+                        fontStyle: FontStyle.italic,
+                        fontSize: 28,
+                        fontWeight: FontWeight.w900),
+                  ),
                   HelpButton(
                       text: 'PRESKOCI',
                       left: null,
-                      onTap: jump,
+                      onTap: () => jump(widget.userProvider, offer, context,
+                          currentQuestionIndex, questionsService, updateState),
                       icon: Icons.skip_next_rounded,
                       img: 'assets/diamond.png')
                 ],
@@ -131,48 +140,6 @@ class QuestionScreenState extends State<QuestionScreen> {
           ),
         ),
       ),
-    );
-  }
-
-  void fifty() {
-    final currentQuestion = questionsService.questions[currentQuestionIndex];
-    if (currentQuestion['answers'].length == 2) {
-      return;
-    }
-    if (widget.userProvider.userModel.diamonds == 0) {
-      return offer.showDiamondsHeartsOffer(context);
-    }
-    AudioPlayerSingleton().audioPlayer.play(AssetSource("sounds/help.m4a"));
-    HelpAlert.showAlertDialog(
-        context: context,
-        icon: 'assets/diamond.png',
-        onPress: () {
-          int newDiamonds = widget.userProvider.userModel.diamonds - 1;
-          updateState(shuffleAnswersAction: true);
-          widget.userProvider.setDiamonds(newDiamonds);
-          Navigator.of(context).pop();
-        });
-  }
-
-  void jump() {
-    if (widget.userProvider.userModel.diamonds == 0) {
-      return offer.showDiamondsHeartsOffer(context);
-    }
-    AudioPlayerSingleton().audioPlayer.play(AssetSource("sounds/help.m4a"));
-    HelpAlert.showAlertDialog(
-      context: context,
-      onPress: () {
-        int newDiamonds = widget.userProvider.userModel.diamonds - 1;
-        widget.userProvider.setDiamonds(newDiamonds);
-        if (currentQuestionIndex == 4) {
-          questionsService.loadQuestions();
-          updateState(resetIndexAction: true);
-          return Navigator.of(context).pop();
-        }
-        updateState(incrementIndexAction: true);
-        Navigator.of(context).pop();
-      },
-      icon: 'assets/diamond.png',
     );
   }
 }
