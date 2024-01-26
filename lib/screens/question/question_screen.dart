@@ -1,7 +1,12 @@
+import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
+import 'package:istorija_srbije/core/global/audio_player.dart';
 import 'package:istorija_srbije/core/shared/widget/background_wrapper.dart';
+import 'package:istorija_srbije/core/shared/widget/diamond_heart_offer.dart';
 import 'package:istorija_srbije/provider/user/user_provider.dart';
 import 'package:istorija_srbije/screens/question/service/question_service.dart';
+import 'package:istorija_srbije/screens/question/service/shuffle.dart';
+import 'package:istorija_srbije/screens/question/widget/help/help_alert.dart';
 import 'package:istorija_srbije/screens/question/widget/help/help_button.dart';
 import 'package:istorija_srbije/screens/question/widget/question_asset.dart';
 
@@ -18,6 +23,26 @@ class QuestionScreenState extends State<QuestionScreen> {
   late QuestionsService questionsService;
   bool isLoading = true;
   int currentQuestionIndex = 0;
+  final offer = const DiamondsHeartsOffer();
+
+  void updateState({
+    bool shuffleAnswersAction = false,
+    bool incrementIndexAction = false,
+    bool resetIndexAction = false,
+    int newIndex = 0,
+  }) {
+    setState(() {
+      if (shuffleAnswersAction) {
+        shuffleAnswers(questionsService.questions[currentQuestionIndex]);
+      } else if (incrementIndexAction) {
+        currentQuestionIndex++;
+      } else if (resetIndexAction) {
+        currentQuestionIndex = 0;
+      } else {
+        currentQuestionIndex = newIndex;
+      }
+    });
+  }
 
   @override
   void initState() {
@@ -82,7 +107,7 @@ class QuestionScreenState extends State<QuestionScreen> {
                   HelpButton(
                       text: '50/50',
                       right: null,
-                      onTap: () {},
+                      onTap: fifty,
                       icon: Icons.filter_2_rounded,
                       img: 'assets/diamond.png'),
                   HelpButton(
@@ -98,5 +123,25 @@ class QuestionScreenState extends State<QuestionScreen> {
         ),
       ),
     );
+  }
+
+  void fifty() {
+    final currentQuestion = questionsService.questions[currentQuestionIndex];
+    if (currentQuestion['answers'].length == 2) {
+      return;
+    }
+    if (widget.userProvider.userModel.diamonds == 0) {
+      return offer.showDiamondsHeartsOffer(context);
+    }
+    AudioPlayerSingleton().audioPlayer.play(AssetSource("sounds/help.m4a"));
+    HelpAlert.showAlertDialog(
+        context: context,
+        icon: 'assets/diamond.png',
+        onPress: () {
+          int newDiamonds = widget.userProvider.userModel.diamonds - 1;
+          updateState(shuffleAnswersAction: true);
+          widget.userProvider.setDiamonds(newDiamonds);
+          Navigator.of(context).pop();
+        });
   }
 }
