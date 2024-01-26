@@ -113,7 +113,7 @@ class QuestionScreenState extends State<QuestionScreen> {
                   HelpButton(
                       text: 'PRESKOCI',
                       left: null,
-                      onTap: () {},
+                      onTap: jump,
                       icon: Icons.skip_next_rounded,
                       img: 'assets/diamond.png')
                 ],
@@ -143,5 +143,28 @@ class QuestionScreenState extends State<QuestionScreen> {
           widget.userProvider.setDiamonds(newDiamonds);
           Navigator.of(context).pop();
         });
+  }
+
+  void jump() {
+    if (widget.userProvider.userModel.diamonds == 0) {
+      return offer.showDiamondsHeartsOffer(context);
+    }
+    AudioPlayerSingleton().audioPlayer.play(AssetSource("sounds/help.m4a"));
+    HelpAlert.showAlertDialog(
+      context: context,
+      onPress: () {
+        int newDiamonds = widget.userProvider.userModel.diamonds - 1;
+        if (currentQuestionIndex == 4) {
+          widget.userProvider.setDiamonds(newDiamonds);
+          questionsService.loadQuestions();
+          updateState(resetIndexAction: true);
+          return Navigator.of(context).pop();
+        }
+        widget.userProvider.setDiamonds(newDiamonds);
+        updateState(incrementIndexAction: true);
+        Navigator.of(context).pop();
+      },
+      icon: 'assets/diamond.png',
+    );
   }
 }
