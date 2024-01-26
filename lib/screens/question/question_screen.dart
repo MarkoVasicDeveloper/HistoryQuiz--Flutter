@@ -6,9 +6,11 @@ import 'package:istorija_srbije/core/shared/widget/diamond_heart_offer.dart';
 import 'package:istorija_srbije/provider/user/user_provider.dart';
 import 'package:istorija_srbije/screens/question/service/question_service.dart';
 import 'package:istorija_srbije/screens/question/service/shuffle.dart';
+import 'package:istorija_srbije/screens/question/widget/answers/answers_container.dart';
 import 'package:istorija_srbije/screens/question/widget/help/help_alert.dart';
 import 'package:istorija_srbije/screens/question/widget/help/help_button.dart';
 import 'package:istorija_srbije/screens/question/widget/question_asset.dart';
+import 'package:istorija_srbije/screens/question/widget/question_container.dart';
 
 class QuestionScreen extends StatefulWidget {
   final UserProvider userProvider;
@@ -100,6 +102,7 @@ class QuestionScreenState extends State<QuestionScreen> {
           child: Column(
             children: [
               QuestionsAssets(userProvider: widget.userProvider),
+              QuestionContainer(question: currentQuestion['body']),
               Row(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -117,7 +120,13 @@ class QuestionScreenState extends State<QuestionScreen> {
                       icon: Icons.skip_next_rounded,
                       img: 'assets/diamond.png')
                 ],
-              )
+              ),
+              AnswerContainer(
+                  currentQuestion: currentQuestion,
+                  questionsService: questionsService,
+                  currentQuestionIndex: currentQuestionIndex,
+                  userProvider: widget.userProvider,
+                  updateState: updateState)
             ],
           ),
         ),
