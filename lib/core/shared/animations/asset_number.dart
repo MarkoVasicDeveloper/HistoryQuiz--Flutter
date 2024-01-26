@@ -3,7 +3,8 @@ import 'package:istorija_srbije/core/shared/animations/entrance_transition.dart'
 
 class AssetNumberAnimation extends StatefulWidget {
   final int number;
-  final Widget Function(Animation<double> animation, Color textColor)
+  final Widget Function(
+          Animation<double> animation, Color textColor, Color shadowColor)
       childBuilder;
 
   const AssetNumberAnimation({
@@ -100,7 +101,7 @@ class AssetNumberAnimationState extends State<AssetNumberAnimation>
       initialY: 0.0,
       offsetXPercentage: 0.1,
       offsetYPercentage: -0.04,
-      child: widget.childBuilder(_animation, _textColor),
+      child: widget.childBuilder(_animation, _textColor, _shadowColor),
     );
   }
 

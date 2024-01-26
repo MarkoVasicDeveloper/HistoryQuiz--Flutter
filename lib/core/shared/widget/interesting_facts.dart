@@ -63,7 +63,6 @@ class InterestingFactsState extends State<InterestingFacts> {
                 child: Container(
                   height: MediaQuery.of(context).size.height,
                   color: const Color.fromARGB(255, 9, 9, 14),
-                  // color: Colors.blueGrey[800],
                 ),
               );
             },

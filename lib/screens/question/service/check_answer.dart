@@ -60,11 +60,9 @@ Future<int> checkAnswer(answer, context, QuestionsService loadQuestions,
   showDialog(
     context: context,
     builder: (BuildContext context) {
-      return const InterestingFacts(
-        imageUrl:
-            'https://upload.wikimedia.org/wikipedia/commons/thumb/a/af/Great_serb_migration-sr.png/256px-Great_serb_migration-sr.png',
-        text:
-            'Neki tekst o pitanju.Neki tekst o pitanju.Neki tekst o pitanju.Neki tekst o pitanju.Neki tekst o pitanju.Neki tekst o pitanju.Neki tekst o pitanju.Neki tekst o pitanju.Neki tekst o pitanju.Neki tekst o pitanju.Neki tekst o pitanju.Neki tekst o pitanju.Neki tekst o pitanju.Neki tekst o pitanju.Neki tekst o pitanju.Neki tekst o pitanju.Neki tekst o pitanju.Neki tekst o pitanju.Neki tekst o pitanju.',
+      return InterestingFacts(
+        imageUrl: question['imageUrl'],
+        text: question['description'],
       );
     },
   );

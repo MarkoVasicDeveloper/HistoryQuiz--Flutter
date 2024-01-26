@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:istorija_srbije/core/shared/animations/asset_number.dart';
+import 'package:istorija_srbije/core/shared/widget/diamond_heart_offer.dart';
 
 class Asset extends StatefulWidget {
   final String icon;
@@ -18,6 +19,8 @@ class Asset extends StatefulWidget {
 class AssetState extends State<Asset> {
   late Animation<double> _animation;
   late Color _textColor;
+  late Color _shadowColor;
+  final DiamondsHeartsOffer _diamondsHeartsOffer = const DiamondsHeartsOffer();
 
   @override
   Widget build(BuildContext context) {
@@ -26,9 +29,10 @@ class AssetState extends State<Asset> {
 
     return AssetNumberAnimation(
       number: widget.number,
-      childBuilder: (animation, textColor) {
+      childBuilder: (animation, textColor, shadowColor) {
         _animation = animation;
         _textColor = textColor;
+        _shadowColor = shadowColor;
 
         return SizedBox(
           width: MediaQuery.of(context).size.width * 0.2,
@@ -41,7 +45,7 @@ class AssetState extends State<Asset> {
               borderRadius: BorderRadius.circular(10.0),
               boxShadow: [
                 BoxShadow(
-                  color: Colors.white.withOpacity(0.0),
+                  color: _shadowColor,
                   spreadRadius: 0.5,
                   blurRadius: 15,
                   offset: const Offset(0, 3),
@@ -89,7 +93,7 @@ class AssetState extends State<Asset> {
                     if (widget.icon != 'star.png')
                       GestureDetector(
                         onTap: () {
-                          // _diamondsHeartsOffer.showDiamondsHeartsOffer(context);
+                          _diamondsHeartsOffer.showDiamondsHeartsOffer(context);
                         },
                         child: const Padding(
                           padding: EdgeInsets.only(left: 2),
