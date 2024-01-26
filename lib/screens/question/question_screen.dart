@@ -163,13 +163,12 @@ class QuestionScreenState extends State<QuestionScreen> {
       context: context,
       onPress: () {
         int newDiamonds = widget.userProvider.userModel.diamonds - 1;
+        widget.userProvider.setDiamonds(newDiamonds);
         if (currentQuestionIndex == 4) {
-          widget.userProvider.setDiamonds(newDiamonds);
           questionsService.loadQuestions();
           updateState(resetIndexAction: true);
           return Navigator.of(context).pop();
         }
-        widget.userProvider.setDiamonds(newDiamonds);
         updateState(incrementIndexAction: true);
         Navigator.of(context).pop();
       },
