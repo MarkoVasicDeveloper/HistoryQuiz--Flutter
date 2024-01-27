@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:istorija_srbije/provider/user/user_provider.dart';
+import 'package:istorija_srbije/screens/home/widgets/menu/notification_slider.dart';
 import 'package:istorija_srbije/screens/home/widgets/menu/volume_slider.dart';
 
 class Menu extends StatelessWidget {
@@ -18,17 +19,21 @@ class Menu extends StatelessWidget {
       child: SizedBox(
         width: 240,
         child: Padding(
-          padding: const EdgeInsets.fromLTRB(8.0, 20.0, 0.0, 8.0),
+          padding: const EdgeInsets.fromLTRB(8.0, 60.0, 0.0, 8.0),
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
+            // mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              const Text(
-                'Username',
-                style: TextStyle(
-                    fontSize: 18,
-                    color: Colors.white,
-                    decoration: TextDecoration.none,
-                    fontFamily: 'RubikDoodleShadow'),
+              const Row(
+                children: [
+                  Text(
+                    'Korisnicko ime:',
+                    style: TextStyle(
+                        fontSize: 18,
+                        color: Colors.white,
+                        decoration: TextDecoration.none,
+                        fontFamily: 'ShantellSans'),
+                  ),
+                ],
               ),
               Text(
                 userProvider.userModel.username,
@@ -37,17 +42,36 @@ class Menu extends StatelessWidget {
                     color: Color(0xFF793EA5),
                     decoration: TextDecoration.none,
                     fontStyle: FontStyle.italic,
-                    fontFamily: 'ShantellSans'),
-              ),
-              const Text(
-                'Zvuk',
-                style: TextStyle(
-                    fontSize: 18,
-                    color: Colors.white,
-                    decoration: TextDecoration.none,
                     fontFamily: 'RubikDoodleShadow'),
               ),
-              VolumeSlider(userProvider: userProvider)
+              const SizedBox(height: 20.0),
+              const Row(
+                children: [
+                  Text(
+                    'Zvuk:',
+                    style: TextStyle(
+                        fontSize: 18,
+                        color: Colors.white,
+                        decoration: TextDecoration.none,
+                        fontFamily: 'ShantellSans'),
+                  ),
+                ],
+              ),
+              VolumeSlider(userProvider: userProvider),
+              const SizedBox(height: 20.0),
+              const Row(
+                children: [
+                  Text(
+                    'Obavestenja:',
+                    style: TextStyle(
+                        fontSize: 18,
+                        color: Colors.white,
+                        decoration: TextDecoration.none,
+                        fontFamily: 'ShantellSans'),
+                  ),
+                ],
+              ),
+              NotificationSlider(userProvider: userProvider),
             ],
           ),
         ),
