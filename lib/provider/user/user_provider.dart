@@ -31,8 +31,7 @@ class UserProvider with ChangeNotifier {
   UserModel get userModel => _userModel;
 
   Future<void> initializeUserData() async {
-    final Map<String, dynamic> decodedData =
-        await _userService.loadUserData(_userModel);
+    final Map<String, dynamic> decodedData = await _userService.loadUserData();
     _userModel = UserModel.fromJson(decodedData);
     notifyListeners();
   }

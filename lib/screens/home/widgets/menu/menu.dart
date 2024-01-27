@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:istorija_srbije/provider/user/user_provider.dart';
 import 'package:istorija_srbije/screens/home/widgets/menu/notification_slider.dart';
 import 'package:istorija_srbije/screens/home/widgets/menu/volume_slider.dart';
+import 'package:istorija_srbije/screens/home/widgets/username_input.dart';
 
 class Menu extends StatelessWidget {
   final UserProvider userProvider;
@@ -11,6 +12,9 @@ class Menu extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final height = MediaQuery.of(context).size.height;
+    final fontSize = height * 0.02;
+    final bigFontSize = height * 0.03;
     return AnimatedPositioned(
       duration: const Duration(milliseconds: 300),
       left: isMenuOpen ? 0.0 : -240.0,
@@ -21,36 +25,43 @@ class Menu extends StatelessWidget {
         child: Padding(
           padding: const EdgeInsets.fromLTRB(8.0, 60.0, 0.0, 8.0),
           child: Column(
-            // mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              const Row(
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
                     'Korisnicko ime:',
                     style: TextStyle(
-                        fontSize: 18,
+                        fontSize: bigFontSize,
                         color: Colors.white,
                         decoration: TextDecoration.none,
                         fontFamily: 'ShantellSans'),
                   ),
+                  IconButton(
+                      onPressed: () =>
+                          showUsernameInputDialog(context, userProvider),
+                      icon: const Icon(
+                        Icons.edit,
+                        color: Colors.white,
+                      ))
                 ],
               ),
               Text(
                 userProvider.userModel.username,
-                style: const TextStyle(
-                    fontSize: 24,
-                    color: Color(0xFF793EA5),
+                style: TextStyle(
+                    fontSize: fontSize,
+                    color: const Color(0xFF793EA5),
                     decoration: TextDecoration.none,
                     fontStyle: FontStyle.italic,
                     fontFamily: 'RubikDoodleShadow'),
               ),
               const SizedBox(height: 20.0),
-              const Row(
+              Row(
                 children: [
                   Text(
                     'Zvuk:',
                     style: TextStyle(
-                        fontSize: 18,
+                        fontSize: bigFontSize,
                         color: Colors.white,
                         decoration: TextDecoration.none,
                         fontFamily: 'ShantellSans'),
@@ -59,12 +70,12 @@ class Menu extends StatelessWidget {
               ),
               VolumeSlider(userProvider: userProvider),
               const SizedBox(height: 20.0),
-              const Row(
+              Row(
                 children: [
                   Text(
                     'Obavestenja:',
                     style: TextStyle(
-                        fontSize: 18,
+                        fontSize: bigFontSize,
                         color: Colors.white,
                         decoration: TextDecoration.none,
                         fontFamily: 'ShantellSans'),
@@ -72,6 +83,7 @@ class Menu extends StatelessWidget {
                 ],
               ),
               NotificationSlider(userProvider: userProvider),
+              const SizedBox(height: 20.0),
             ],
           ),
         ),
