@@ -24,8 +24,8 @@ class AssetState extends State<Asset> {
 
   @override
   Widget build(BuildContext context) {
-    final scale = widget.icon == 'star.png' ? 0.125 : 0.085;
-    final layout = widget.icon == 'star.png' ? 0.035 : 0.02;
+    final scale = widget.icon == 'star.png' ? 0.165 : 0.105;
+    final layout = widget.icon == 'star.png' ? 0.05 : 0.03;
 
     return AssetNumberAnimation(
       number: widget.number,
@@ -35,7 +35,8 @@ class AssetState extends State<Asset> {
         _shadowColor = shadowColor;
 
         return SizedBox(
-          width: MediaQuery.of(context).size.width * 0.2,
+          width: MediaQuery.of(context).size.width * 0.21,
+          height: 30,
           child: Container(
             decoration: BoxDecoration(
               border: Border.all(
@@ -67,7 +68,9 @@ class AssetState extends State<Asset> {
                   ),
                 ),
                 Row(
+                  mainAxisSize: MainAxisSize.max,
                   mainAxisAlignment: MainAxisAlignment.end,
+                  crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     Padding(
                       padding: widget.icon == 'star.png'
@@ -81,7 +84,7 @@ class AssetState extends State<Asset> {
                             widget.number.toString(),
                             style: TextStyle(
                               fontSize:
-                                  MediaQuery.of(context).size.width * 0.04,
+                                  MediaQuery.of(context).size.width * 0.05,
                               color: _textColor,
                               decoration: TextDecoration.none,
                               fontWeight: FontWeight.w900,

@@ -20,7 +20,7 @@ class WheelButton extends StatelessWidget {
       child: Pulsating(
         child: SizedBox(
           width: MediaQuery.of(context).size.width * 0.2,
-          height: 20,
+          height: 30,
           child: ElevatedButton(
             onPressed: () => Navigator.pushNamed(context, '/wheel'),
             style: ElevatedButton.styleFrom(

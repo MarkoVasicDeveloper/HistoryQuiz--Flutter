@@ -97,7 +97,7 @@ class QuestionScreenState extends State<QuestionScreen> {
           BlendMode.multiply,
         ),
         child: Padding(
-          padding: const EdgeInsets.fromLTRB(8.0, 40.0, 8.0, 8.0),
+          padding: const EdgeInsets.fromLTRB(8.0, 50.0, 8.0, 8.0),
           child: Column(
             children: [
               QuestionsAssets(userProvider: widget.userProvider),

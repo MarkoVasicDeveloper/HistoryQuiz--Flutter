@@ -25,7 +25,7 @@ class MenuButton extends StatelessWidget {
             onPressed: onPressed,
             icon: const Icon(
               Icons.menu,
-              size: 35,
+              size: 40,
               color: Color(0xFF793EA5),
             ),
           ),

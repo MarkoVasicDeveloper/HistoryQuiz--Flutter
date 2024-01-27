@@ -12,14 +12,18 @@ class QuestionsAssets extends StatelessWidget {
     final userModel = userProvider.userModel;
     return Padding(
       padding: const EdgeInsets.only(left: 25.0),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          Asset(icon: 'heart.png', number: userModel.hearts),
-          Asset(icon: 'star.png', number: userModel.success.points),
-          Asset(icon: 'diamond.png', number: userModel.diamonds),
-        ],
+      child: SizedBox(
+        height: 30,
+        child: Row(
+          mainAxisSize: MainAxisSize.max,
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Asset(icon: 'heart.png', number: userModel.hearts),
+            Asset(icon: 'star.png', number: userModel.success.points),
+            Asset(icon: 'diamond.png', number: userModel.diamonds),
+          ],
+        ),
       ),
     );
   }
