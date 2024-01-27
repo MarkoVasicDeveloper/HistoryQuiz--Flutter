@@ -17,6 +17,11 @@ void main() async {
   SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
     statusBarColor: Colors.transparent,
   ));
+
+  SystemChrome.setSystemUIChangeCallback((systemOverlaysAreVisible) async {
+    await Future.delayed(const Duration(seconds: 5));
+    SystemChrome.restoreSystemUIOverlays();
+  });
   Wakelock.enable();
 
   final userService = UserService();
