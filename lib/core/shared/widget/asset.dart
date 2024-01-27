@@ -34,71 +34,73 @@ class AssetState extends State<Asset> {
         _textColor = textColor;
         _shadowColor = shadowColor;
 
-        return SizedBox(
-          width: MediaQuery.of(context).size.width * 0.21,
-          height: 30,
-          child: Container(
-            decoration: BoxDecoration(
-              border: Border.all(
-                color: const Color.fromARGB(255, 128, 64, 64),
-                width: 2,
-              ),
-              borderRadius: BorderRadius.circular(10.0),
-              boxShadow: [
-                BoxShadow(
-                  color: _shadowColor,
-                  spreadRadius: 0.5,
-                  blurRadius: 15,
-                  offset: const Offset(0, 3),
+        return GestureDetector(
+          onTap: () {
+            if (widget.icon != 'star.png') {
+              _diamondsHeartsOffer.showDiamondsHeartsOffer(context);
+            }
+          },
+          child: SizedBox(
+            width: MediaQuery.of(context).size.width * 0.21,
+            height: 30,
+            child: Container(
+              decoration: BoxDecoration(
+                border: Border.all(
+                  color: const Color.fromARGB(255, 128, 64, 64),
+                  width: 2,
                 ),
-              ],
-            ),
-            padding: const EdgeInsets.fromLTRB(1, 1, 3, 1),
-            child: Stack(
-              clipBehavior: Clip.none,
-              children: [
-                Positioned(
-                  left: -MediaQuery.of(context).size.width * layout,
-                  top: -MediaQuery.of(context).size.width * layout,
-                  child: Image.asset(
-                    'assets/${widget.icon}',
-                    width: MediaQuery.of(context).size.width * scale,
-                    height: MediaQuery.of(context).size.width * scale,
-                    fit: BoxFit.cover,
+                borderRadius: BorderRadius.circular(10.0),
+                boxShadow: [
+                  BoxShadow(
+                    color: _shadowColor,
+                    spreadRadius: 0.5,
+                    blurRadius: 15,
+                    offset: const Offset(0, 3),
                   ),
-                ),
-                Row(
-                  mainAxisSize: MainAxisSize.max,
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Padding(
-                      padding: widget.icon == 'star.png'
-                          ? const EdgeInsets.only(right: 5.0)
-                          : const EdgeInsets.all(0),
-                      child: Transform.scale(
-                        scale: _animation.value,
-                        child: Visibility(
-                          visible: true,
-                          child: Text(
-                            widget.number.toString(),
-                            style: TextStyle(
-                              fontSize:
-                                  MediaQuery.of(context).size.width * 0.05,
-                              color: _textColor,
-                              decoration: TextDecoration.none,
-                              fontWeight: FontWeight.w900,
+                ],
+              ),
+              padding: const EdgeInsets.fromLTRB(1, 1, 3, 1),
+              child: Stack(
+                clipBehavior: Clip.none,
+                children: [
+                  Positioned(
+                    left: -MediaQuery.of(context).size.width * layout,
+                    top: -MediaQuery.of(context).size.width * layout,
+                    child: Image.asset(
+                      'assets/${widget.icon}',
+                      width: MediaQuery.of(context).size.width * scale,
+                      height: MediaQuery.of(context).size.width * scale,
+                      fit: BoxFit.cover,
+                    ),
+                  ),
+                  Row(
+                    mainAxisSize: MainAxisSize.max,
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Padding(
+                        padding: widget.icon == 'star.png'
+                            ? const EdgeInsets.only(right: 5.0)
+                            : const EdgeInsets.all(0),
+                        child: Transform.scale(
+                          scale: _animation.value,
+                          child: Visibility(
+                            visible: true,
+                            child: Text(
+                              widget.number.toString(),
+                              style: TextStyle(
+                                fontSize:
+                                    MediaQuery.of(context).size.width * 0.05,
+                                color: _textColor,
+                                decoration: TextDecoration.none,
+                                fontWeight: FontWeight.w900,
+                              ),
                             ),
                           ),
                         ),
                       ),
-                    ),
-                    if (widget.icon != 'star.png')
-                      GestureDetector(
-                        onTap: () {
-                          _diamondsHeartsOffer.showDiamondsHeartsOffer(context);
-                        },
-                        child: const Padding(
+                      if (widget.icon != 'star.png')
+                        const Padding(
                           padding: EdgeInsets.only(left: 2),
                           child: Icon(
                             Icons.add_circle,
@@ -106,10 +108,10 @@ class AssetState extends State<Asset> {
                             size: 12,
                           ),
                         ),
-                      ),
-                  ],
-                ),
-              ],
+                    ],
+                  ),
+                ],
+              ),
             ),
           ),
         );
