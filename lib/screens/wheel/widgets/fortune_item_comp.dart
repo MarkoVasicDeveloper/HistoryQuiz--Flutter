@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_fortune_wheel/flutter_fortune_wheel.dart';
 import 'package:istorija_srbije/core/constant/fortune_items.dart';
+import 'package:istorija_srbije/core/constant/screen.dart';
 import 'package:istorija_srbije/core/shared/animations/scaling.dart';
 
 class FortuneItemComp extends FortuneItem {
@@ -18,22 +19,24 @@ class FortuneItemComp extends FortuneItem {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              const SizedBox(height: 40, width: 40),
+              SizedBox(
+                  height: screenWidth(context) * 0.11,
+                  width: screenWidth(context) * 0.11),
               Transform.rotate(
                 angle: 90 * (3.14 / 180),
                 child: Scaling(
-                  targetWidth: MediaQuery.of(context).size.width,
-                  targetHeight: MediaQuery.of(context).size.height,
+                  targetWidth: screenWidth(context),
+                  targetHeight: screenHeight(context),
                   delay: Duration(milliseconds: 150 + counter * 25),
                   duration: const Duration(milliseconds: 200),
                   curve: Curves.easeInOutCirc,
                   child: Text(item.number,
-                      style: const TextStyle(
-                          fontSize: 18,
+                      style: TextStyle(
+                          fontSize: screenWidth(context) * 0.06,
                           fontWeight: FontWeight.bold,
                           color: Colors.white,
                           fontStyle: FontStyle.italic,
-                          shadows: [
+                          shadows: const [
                             Shadow(
                               blurRadius: 0.0,
                               color: Colors.black,
@@ -42,19 +45,22 @@ class FortuneItemComp extends FortuneItem {
                           ])),
                 ),
               ),
-              const SizedBox(
-                width: 10,
-                height: 10,
+              SizedBox(
+                width: screenWidth(context) * 0.05,
+                height: screenWidth(context) * 0.05,
               ),
               Transform.rotate(
                 angle: 90 * (3.14 / 180),
                 child: Scaling(
-                  targetWidth: MediaQuery.of(context).size.width,
-                  targetHeight: MediaQuery.of(context).size.height,
+                  targetWidth: screenWidth(context),
+                  targetHeight: screenHeight(context),
                   delay: Duration(milliseconds: 500 + counter * 25),
                   duration: const Duration(milliseconds: 500),
                   curve: Curves.easeInOutCirc,
-                  child: Image.asset(item.image),
+                  child: Image.asset(
+                    item.image,
+                    width: screenWidth(context) * 0.15,
+                  ),
                 ),
               ),
             ],

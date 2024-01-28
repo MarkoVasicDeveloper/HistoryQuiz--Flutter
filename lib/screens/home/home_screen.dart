@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:istorija_srbije/core/constant/screen.dart';
 import 'package:istorija_srbije/provider/user/user_provider.dart';
 import 'package:istorija_srbije/screens/home/widgets/header.dart';
 import 'package:istorija_srbije/screens/home/widgets/home_img.dart';
@@ -40,7 +41,10 @@ class HomeState extends State<HomeScreen> {
           onPressed: () {
             showUsernameInputDialog(context, widget.userProvider);
           },
-          child: const Text('Unesite username'),
+          child: Text(
+            'Unesite username',
+            style: TextStyle(fontSize: screenWidth(context) * 0.05),
+          ),
         ),
       );
     }
@@ -49,9 +53,9 @@ class HomeState extends State<HomeScreen> {
       children: [
         AnimatedPositioned(
           duration: const Duration(milliseconds: 300),
-          left: isMenuOpen ? 240.0 : 0.0,
+          left: isMenuOpen ? screenWidth(context) - 60 : 0.0,
           top: isMenuOpen ? 30.0 : 0.0,
-          right: isMenuOpen ? -300.0 : 0.0,
+          right: isMenuOpen ? -screenWidth(context) : 0.0,
           bottom: 0.0,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,

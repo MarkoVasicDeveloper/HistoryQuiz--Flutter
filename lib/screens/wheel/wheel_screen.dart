@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:istorija_srbije/core/constant/screen.dart';
 import 'package:istorija_srbije/provider/user/user_provider.dart';
 import 'package:istorija_srbije/screens/wheel/widgets/spin_button.dart';
 import 'package:istorija_srbije/screens/wheel/widgets/wheel.dart';
@@ -42,8 +43,8 @@ class WheelScreenState extends State<WheelScreen> {
           ),
           child: ConstrainedBox(
             constraints: BoxConstraints(
-              maxWidth: MediaQuery.of(context).size.width * 0.95,
-              maxHeight: MediaQuery.of(context).size.height * 0.6,
+              maxWidth: screenWidth(context) * 0.95,
+              maxHeight: screenHeight(context) * 0.6,
             ),
             child: Wheel(
                 controller: _controller.stream,

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:istorija_srbije/core/constant/screen.dart';
 
 class Answer extends StatelessWidget {
   final String answer;
@@ -8,7 +9,6 @@ class Answer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final double height = MediaQuery.of(context).size.height;
     return Expanded(
       child: InkWell(
         onTap: callback,
@@ -23,7 +23,7 @@ class Answer extends StatelessWidget {
             child: Text(
               answer,
               style: TextStyle(
-                  fontSize: height * 0.04,
+                  fontSize: screenHeight(context) * 0.04,
                   decoration: TextDecoration.none,
                   color: Colors.white,
                   fontWeight: FontWeight.w900),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:istorija_srbije/core/constant/screen.dart';
 
 class InterestingFacts extends StatefulWidget {
   final String imageUrl;
@@ -36,8 +37,9 @@ class InterestingFactsState extends State<InterestingFacts> {
                     child: SingleChildScrollView(
                       child: Text(
                         widget.text,
-                        style:
-                            const TextStyle(fontSize: 12, color: Colors.white),
+                        style: TextStyle(
+                            fontSize: screenWidth(context) * 0.04,
+                            color: Colors.white),
                       ),
                     ),
                   ),
@@ -57,11 +59,11 @@ class InterestingFactsState extends State<InterestingFacts> {
             curve: Curves.fastOutSlowIn,
             builder: (context, value, child) {
               return Positioned(
-                top: 20 + MediaQuery.of(context).size.height * value,
+                top: 20 + screenHeight(context) * value,
                 left: 0,
                 right: 0,
                 child: Container(
-                  height: MediaQuery.of(context).size.height,
+                  height: screenHeight(context),
                   color: const Color.fromARGB(255, 9, 9, 14),
                 ),
               );

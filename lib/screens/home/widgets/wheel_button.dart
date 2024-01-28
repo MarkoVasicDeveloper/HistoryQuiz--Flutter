@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:istorija_srbije/core/constant/screen.dart';
 import 'package:istorija_srbije/core/shared/animations/entrance_transition.dart';
 import 'package:istorija_srbije/core/shared/animations/pulsating.dart';
 
@@ -8,7 +9,7 @@ class WheelButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return EntranceTransition(
-      width: MediaQuery.of(context).size.width * 0.2,
+      width: screenWidth(context) * 0.2,
       delay: const Duration(seconds: 1),
       fadeIn: true,
       offsetX: -100.0,
@@ -19,14 +20,15 @@ class WheelButton extends StatelessWidget {
       offsetYPercentage: -0.04,
       child: Pulsating(
         child: SizedBox(
-          width: MediaQuery.of(context).size.width * 0.2,
-          height: 30,
+          width: screenWidth(context) * 0.2,
+          height: screenHeight(context) * 0.05,
           child: ElevatedButton(
-            onPressed: () => Navigator.pushNamed(context, '/wheel'),
+            onPressed: () => Navigator.pushReplacementNamed(context, '/wheel'),
             style: ElevatedButton.styleFrom(
               padding: const EdgeInsets.all(1.0),
             ),
-            child: const Text('Zavrti', style: TextStyle(fontSize: 12)),
+            child: Text('Zavrti',
+                style: TextStyle(fontSize: screenWidth(context) * 0.04)),
           ),
         ),
       ),

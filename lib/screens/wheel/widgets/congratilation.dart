@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:istorija_srbije/core/constant/fortune_items.dart';
+import 'package:istorija_srbije/core/constant/screen.dart';
 import 'package:istorija_srbije/provider/user/user_provider.dart';
 
 class Congratilation extends StatelessWidget {
@@ -23,22 +24,25 @@ class Congratilation extends StatelessWidget {
           ),
         ),
         AlertDialog(
-          title: const Text('Cestitamo!',
+          title: Text('Cestitamo!',
               textAlign: TextAlign.center,
-              style: TextStyle(color: Colors.white)),
+              style: TextStyle(
+                  color: Colors.white, fontSize: screenWidth(context) * 0.09)),
           content: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  const Text('Osvojili ste: ',
-                      style: TextStyle(color: Colors.white)),
+                  Text('Osvojili ste: ',
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontSize: screenWidth(context) * 0.05)),
                   Text(
                     item.number,
-                    style: const TextStyle(
-                        color: Color(0xFF793EA5),
-                        fontSize: 24,
+                    style: TextStyle(
+                        color: const Color(0xFF793EA5),
+                        fontSize: screenWidth(context) * 0.08,
                         fontWeight: FontWeight.w900),
                   )
                 ],
@@ -61,7 +65,7 @@ class Congratilation extends StatelessWidget {
                           userModel.diamonds + int.parse(item.number));
                       userProvider.setFreeSpin(false);
                     }
-                    Navigator.pushNamed(context, '/home');
+                    Navigator.pushReplacementNamed(context, '/home');
                   },
                   child: const Text('Pokupi'),
                 ),

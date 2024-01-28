@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:istorija_srbije/core/constant/screen.dart';
 
 class QuestionContainer extends StatelessWidget {
   final String question;
@@ -7,16 +8,15 @@ class QuestionContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final double height = MediaQuery.of(context).size.height;
     return SizedBox(
-      height: MediaQuery.of(context).size.height / 2,
+      height: screenHeight(context) / 2,
       child: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Center(
           child: Text(
             question,
             style: TextStyle(
-                fontSize: height * 0.025,
+                fontSize: screenHeight(context) * 0.025,
                 decoration: TextDecoration.none,
                 color: const Color(0xFF793EA5),
                 fontStyle: FontStyle.italic),

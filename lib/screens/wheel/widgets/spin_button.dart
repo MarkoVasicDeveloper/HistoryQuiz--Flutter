@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:istorija_srbije/core/constant/screen.dart';
 
 class SpinButton extends StatelessWidget {
   final bool isSpinning;
@@ -30,29 +31,33 @@ class SpinButton extends StatelessWidget {
     return isSpinning
         ? ElevatedButton(
             onPressed: onPressed,
-            child: const Text('Zavrti'),
+            child: Text('Zavrti',
+                style: TextStyle(fontSize: screenWidth(context) * 0.05)),
           )
         : Column(
             children: [
-              const Text(
+              Text(
                 'Sledeci slobodan krug: ',
                 style: TextStyle(
-                    fontSize: 12,
+                    fontSize: screenWidth(context) * 0.04,
                     decoration: TextDecoration.none,
-                    color: Color(0xFF793EA5)),
+                    color: const Color(0xFF793EA5)),
               ),
               const SizedBox(width: 5, height: 5),
               Text(
                 calculateTimeRemaining(),
-                style: const TextStyle(
-                    fontSize: 22,
+                style: TextStyle(
+                    fontSize: screenWidth(context) * 0.05,
                     decoration: TextDecoration.none,
-                    color: Color(0xFF793EA5),
+                    color: const Color(0xFF793EA5),
                     fontStyle: FontStyle.italic),
               ),
               ElevatedButton(
                 onPressed: () => Navigator.pushNamed(context, '/home'),
-                child: const Text('Nazad'),
+                child: Text(
+                  'Nazad',
+                  style: TextStyle(fontSize: screenWidth(context) * 0.05),
+                ),
               )
             ],
           );

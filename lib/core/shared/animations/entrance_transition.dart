@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:istorija_srbije/core/constant/screen.dart';
 
 class EntranceTransition extends StatefulWidget {
   final Widget child;
@@ -72,9 +73,6 @@ class EntranceTransitionState extends State<EntranceTransition>
 
   @override
   Widget build(BuildContext context) {
-    final screenWidth = MediaQuery.of(context).size.width;
-    final screenHeight = MediaQuery.of(context).size.height;
-
     return AnimatedBuilder(
       animation: _controller,
       builder: (context, child) {
@@ -82,11 +80,11 @@ class EntranceTransitionState extends State<EntranceTransition>
           offset: Offset(
             _slideAnimation.value * widget.offsetX +
                 widget.initialX +
-                screenWidth * widget.offsetXPercentage -
+                screenWidth(context) * widget.offsetXPercentage -
                 widget.width / 2,
             _slideAnimation.value * widget.offsetY +
                 widget.initialY +
-                screenHeight * widget.offsetYPercentage,
+                screenHeight(context) * widget.offsetYPercentage,
           ),
           child: Opacity(
             opacity: _fadeAnimation.value,

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:istorija_srbije/core/constant/screen.dart';
 import 'package:istorija_srbije/provider/user/user_provider.dart';
 
 Future<void> showUsernameInputDialog(
@@ -9,17 +10,21 @@ Future<void> showUsernameInputDialog(
     context: context,
     builder: (context) {
       return AlertDialog(
-        title: const Text(
+        title: Text(
           'Unesite korisničko ime',
-          style: TextStyle(color: Color(0xFF793EA5)),
+          style: TextStyle(
+              color: const Color(0xFF793EA5),
+              fontSize: screenWidth(context) * 0.06),
           textAlign: TextAlign.center,
         ),
         content: TextField(
           controller: usernameController,
-          style: const TextStyle(color: Colors.white),
-          decoration: const InputDecoration(
+          style: TextStyle(
+              color: Colors.white, fontSize: screenWidth(context) * 0.04),
+          decoration: InputDecoration(
             hintText: 'Korisničko ime',
-            hintStyle: TextStyle(color: Colors.white),
+            hintStyle: TextStyle(
+                color: Colors.white, fontSize: screenWidth(context) * 0.04),
           ),
         ),
         actions: [
@@ -31,7 +36,10 @@ Future<void> showUsernameInputDialog(
                 Navigator.pushReplacementNamed(context, '/home');
               }
             },
-            child: const Text('Potvrdi'),
+            child: Text(
+              'Potvrdi',
+              style: TextStyle(fontSize: screenWidth(context) * 0.05),
+            ),
           ),
         ],
         backgroundColor: Colors.black,

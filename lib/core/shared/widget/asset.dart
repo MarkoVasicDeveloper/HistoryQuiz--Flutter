@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:istorija_srbije/core/constant/screen.dart';
 import 'package:istorija_srbije/core/shared/animations/asset_number.dart';
 import 'package:istorija_srbije/core/shared/widget/diamond_heart_offer.dart';
 
@@ -41,8 +42,8 @@ class AssetState extends State<Asset> {
             }
           },
           child: SizedBox(
-            width: MediaQuery.of(context).size.width * 0.21,
-            height: 30,
+            width: screenWidth(context) * 0.21,
+            height: screenHeight(context) * 0.05,
             child: Container(
               decoration: BoxDecoration(
                 border: Border.all(
@@ -64,12 +65,12 @@ class AssetState extends State<Asset> {
                 clipBehavior: Clip.none,
                 children: [
                   Positioned(
-                    left: -MediaQuery.of(context).size.width * layout,
-                    top: -MediaQuery.of(context).size.width * layout,
+                    left: -screenWidth(context) * layout,
+                    top: -screenWidth(context) * layout,
                     child: Image.asset(
                       'assets/${widget.icon}',
-                      width: MediaQuery.of(context).size.width * scale,
-                      height: MediaQuery.of(context).size.width * scale,
+                      width: screenWidth(context) * scale,
+                      height: screenWidth(context) * scale,
                       fit: BoxFit.cover,
                     ),
                   ),
@@ -89,8 +90,7 @@ class AssetState extends State<Asset> {
                             child: Text(
                               widget.number.toString(),
                               style: TextStyle(
-                                fontSize:
-                                    MediaQuery.of(context).size.width * 0.05,
+                                fontSize: screenWidth(context) * 0.05,
                                 color: _textColor,
                                 decoration: TextDecoration.none,
                                 fontWeight: FontWeight.w900,
@@ -100,12 +100,12 @@ class AssetState extends State<Asset> {
                         ),
                       ),
                       if (widget.icon != 'star.png')
-                        const Padding(
-                          padding: EdgeInsets.only(left: 2),
+                        Padding(
+                          padding: const EdgeInsets.only(left: 2),
                           child: Icon(
                             Icons.add_circle,
-                            color: Color.fromARGB(255, 14, 204, 4),
-                            size: 12,
+                            color: const Color.fromARGB(255, 14, 204, 4),
+                            size: screenWidth(context) * 0.03,
                           ),
                         ),
                     ],

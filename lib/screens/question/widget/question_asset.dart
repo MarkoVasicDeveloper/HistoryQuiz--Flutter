@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:istorija_srbije/core/constant/screen.dart';
 import 'package:istorija_srbije/core/shared/widget/asset.dart';
 import 'package:istorija_srbije/provider/user/user_provider.dart';
 
@@ -13,7 +14,7 @@ class QuestionsAssets extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.only(left: 25.0),
       child: SizedBox(
-        height: 30,
+        height: screenHeight(context) * 0.05,
         child: Row(
           mainAxisSize: MainAxisSize.max,
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,

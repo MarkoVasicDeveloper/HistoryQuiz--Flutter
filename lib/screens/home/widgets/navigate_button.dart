@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:istorija_srbije/core/constant/screen.dart';
 import 'package:istorija_srbije/core/shared/animations/entrance_transition.dart';
 
 class NavigateButton extends StatelessWidget {
@@ -10,16 +11,19 @@ class NavigateButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return EntranceTransition(
-      width: MediaQuery.of(context).size.width * 0.7,
+      width: screenWidth(context) * 0.7,
       delay: const Duration(seconds: 1),
       offsetY: -100.0,
       initialY: -10.0,
       offsetXPercentage: 0.5,
       child: SizedBox(
-        width: MediaQuery.of(context).size.width * 0.7,
+        width: screenWidth(context) * 0.7,
         child: ElevatedButton(
           onPressed: onPress,
-          child: Text(title),
+          child: Text(
+            title,
+            style: TextStyle(fontSize: screenWidth(context) * 0.05),
+          ),
         ),
       ),
     );

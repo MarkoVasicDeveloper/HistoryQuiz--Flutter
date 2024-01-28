@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:istorija_srbije/core/constant/screen.dart';
 import 'package:istorija_srbije/core/shared/animations/entrance_transition.dart';
 
 class MenuButton extends StatelessWidget {
@@ -9,7 +10,7 @@ class MenuButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return EntranceTransition(
-      width: MediaQuery.of(context).size.width * 0.2,
+      width: screenWidth(context) * 0.2,
       delay: const Duration(seconds: 1),
       offsetX: 200.0,
       offsetY: 100.0,
@@ -20,13 +21,13 @@ class MenuButton extends StatelessWidget {
       child: Material(
         color: Colors.transparent,
         child: SizedBox(
-          width: MediaQuery.of(context).size.width * 0.2,
+          width: screenWidth(context) * 0.2,
           child: IconButton(
             onPressed: onPressed,
-            icon: const Icon(
+            icon: Icon(
               Icons.menu,
-              size: 40,
-              color: Color(0xFF793EA5),
+              size: screenWidth(context) * 0.13,
+              color: const Color(0xFF793EA5),
             ),
           ),
         ),

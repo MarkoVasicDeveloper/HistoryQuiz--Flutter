@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:istorija_srbije/core/constant/screen.dart';
 import 'package:istorija_srbije/core/shared/animations/entrance_transition.dart';
 
 class AssetNumberAnimation extends StatefulWidget {
@@ -93,7 +94,7 @@ class AssetNumberAnimationState extends State<AssetNumberAnimation>
   @override
   Widget build(BuildContext context) {
     return EntranceTransition(
-      width: MediaQuery.of(context).size.width * 0.2,
+      width: screenWidth(context) * 0.2,
       delay: const Duration(seconds: 1),
       offsetX: 0.0,
       offsetY: 100.0,

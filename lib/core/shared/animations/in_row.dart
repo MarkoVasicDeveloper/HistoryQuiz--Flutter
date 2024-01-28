@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:istorija_srbije/core/constant/screen.dart';
 
 class InRowAnimation {
   static OverlayEntry createInRowAnimation({
@@ -25,31 +26,31 @@ class InRowAnimation {
                 children: [
                   Text(
                     'WoW! ${row * 5} u nizu!',
-                    style: const TextStyle(
-                      color: Color(0xFF793EA5),
+                    style: TextStyle(
+                      color: const Color(0xFF793EA5),
                       decoration: TextDecoration.none,
-                      fontSize: 24,
+                      fontSize: screenWidth(context) * 0.1,
                     ),
                     textAlign: TextAlign.center,
                   ),
                   const SizedBox(
                     height: 10,
                   ),
-                  const Text(
+                  Text(
                     'Osvojili ste: ',
                     style: TextStyle(
                         color: Colors.white,
                         decoration: TextDecoration.none,
-                        fontSize: 18),
+                        fontSize: screenWidth(context) * 0.08),
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(
                         '${row.toString()}x ',
-                        style: const TextStyle(
-                          color: Color(0xFF793EA5),
-                          fontSize: 24,
+                        style: TextStyle(
+                          color: const Color(0xFF793EA5),
+                          fontSize: screenWidth(context) * 0.09,
                           fontWeight: FontWeight.w900,
                           decoration: TextDecoration.none,
                         ),

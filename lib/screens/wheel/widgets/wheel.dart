@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_fortune_wheel/flutter_fortune_wheel.dart';
 import 'package:istorija_srbije/core/constant/fortune_items.dart';
+import 'package:istorija_srbije/core/constant/screen.dart';
 import 'package:istorija_srbije/provider/user/user_provider.dart';
 import 'package:istorija_srbije/screens/wheel/widgets/congratilation.dart';
 import 'package:istorija_srbije/screens/wheel/widgets/fortune_item_comp.dart';
@@ -43,8 +44,8 @@ class WheelState extends State<Wheel> {
       children: [
         ConstrainedBox(
           constraints: BoxConstraints(
-            maxWidth: MediaQuery.of(context).size.width * 0.95,
-            maxHeight: MediaQuery.of(context).size.height * 0.6,
+            maxWidth: screenWidth(context) * 0.95,
+            maxHeight: screenHeight(context) * 0.6,
           ),
           child: FortuneWheel(
             alignment: Alignment.bottomLeft,

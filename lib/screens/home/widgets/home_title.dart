@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:istorija_srbije/core/constant/screen.dart';
 import 'package:istorija_srbije/core/shared/animations/scaling.dart';
 
 class HomeTitle extends StatelessWidget {
@@ -23,7 +24,7 @@ class HomeTitle extends StatelessWidget {
               style: TextStyle(
                 color: const Color(0xFF793EA5),
                 decoration: TextDecoration.none,
-                fontSize: MediaQuery.of(context).size.width * 0.09,
+                fontSize: screenWidth(context) * 0.09,
                 fontFamily: 'RubikDoodleShadow',
               ),
             ),
