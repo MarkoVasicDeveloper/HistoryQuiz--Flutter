@@ -61,8 +61,8 @@ Future<int> checkAnswer(answer, context, QuestionsService loadQuestions,
     context: context,
     builder: (BuildContext context) {
       return InterestingFacts(
-        imageUrl: question['imageUrl'],
-        text: question['description'],
+        imageUrl: question['imageUrl'] ?? '',
+        text: question['description'] ?? '',
       );
     },
   );
