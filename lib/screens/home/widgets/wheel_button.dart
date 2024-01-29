@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:istorija_srbije/core/constant/screen.dart';
 import 'package:istorija_srbije/core/shared/animations/entrance_transition.dart';
@@ -21,7 +23,7 @@ class WheelButton extends StatelessWidget {
       child: Pulsating(
         child: SizedBox(
           width: screenWidth(context) * 0.2,
-          height: screenHeight(context) * 0.05,
+          height: max(screenHeight(context) * 0.05, 30),
           child: ElevatedButton(
             onPressed: () => Navigator.pushReplacementNamed(context, '/wheel'),
             style: ElevatedButton.styleFrom(

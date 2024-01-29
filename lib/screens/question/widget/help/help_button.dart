@@ -30,6 +30,7 @@ class HelpButton extends StatelessWidget {
           InkWell(
             onTap: onTap,
             child: Container(
+              constraints: const BoxConstraints(minHeight: 40),
               width: MediaQuery.of(context).size.width / 3 - 10.0,
               height: 30.0,
               decoration: BoxDecoration(

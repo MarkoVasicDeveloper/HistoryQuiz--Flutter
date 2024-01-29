@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:istorija_srbije/core/constant/screen.dart';
 import 'package:istorija_srbije/core/shared/animations/asset_number.dart';
@@ -43,7 +45,7 @@ class AssetState extends State<Asset> {
           },
           child: SizedBox(
             width: screenWidth(context) * 0.21,
-            height: screenHeight(context) * 0.05,
+            height: max(screenHeight(context) * 0.05, 30),
             child: Container(
               decoration: BoxDecoration(
                 border: Border.all(

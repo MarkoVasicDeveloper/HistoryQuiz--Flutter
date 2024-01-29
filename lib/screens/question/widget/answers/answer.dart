@@ -5,7 +5,8 @@ class Answer extends StatelessWidget {
   final String answer;
   final VoidCallback callback;
 
-  const Answer({super.key, required this.answer, required this.callback});
+  const Answer({Key? key, required this.answer, required this.callback})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:istorija_srbije/core/constant/screen.dart';
 
 class HelpAlert {
   static void showAlertDialog({
@@ -10,10 +11,11 @@ class HelpAlert {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: const Text(
+          title: Text(
             'Da li ste sigurni?',
             textAlign: TextAlign.center,
-            style: TextStyle(color: Colors.white),
+            style: TextStyle(
+                color: Colors.white, fontSize: screenWidth(context) * 0.06),
           ),
           content: Column(
             mainAxisSize: MainAxisSize.min,
@@ -21,13 +23,15 @@ class HelpAlert {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  const Text('Izgubićete: ',
-                      style: TextStyle(color: Colors.white)),
-                  const Text(
+                  Text('Izgubićete: ',
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontSize: screenWidth(context) * 0.05)),
+                  Text(
                     '1',
                     style: TextStyle(
-                      color: Color(0xFF793EA5),
-                      fontSize: 24,
+                      color: const Color(0xFF793EA5),
+                      fontSize: screenWidth(context) * 0.06,
                       fontWeight: FontWeight.w900,
                     ),
                   ),
@@ -43,8 +47,10 @@ class HelpAlert {
                 Expanded(
                   child: ElevatedButton(
                     onPressed: onPress,
-                    child: const Text('Ok',
-                        style: TextStyle(fontWeight: FontWeight.w900)),
+                    child: Text('Ok',
+                        style: TextStyle(
+                            fontWeight: FontWeight.w900,
+                            fontSize: screenWidth(context) * 0.04)),
                   ),
                 ),
                 const SizedBox(width: 5),
@@ -53,8 +59,10 @@ class HelpAlert {
                     onPressed: () {
                       Navigator.of(context).pop();
                     },
-                    child: const Text('Nazad',
-                        style: TextStyle(fontWeight: FontWeight.w900)),
+                    child: Text('Nazad',
+                        style: TextStyle(
+                            fontWeight: FontWeight.w900,
+                            fontSize: screenWidth(context) * 0.04)),
                   ),
                 ),
               ],

@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:istorija_srbije/core/constant/screen.dart';
 
@@ -9,7 +11,7 @@ class QuestionContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: screenHeight(context) / 2,
+      height: max(screenHeight(context) / 2, 200),
       child: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Center(
