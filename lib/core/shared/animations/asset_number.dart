@@ -100,7 +100,7 @@ class AssetNumberAnimationState extends State<AssetNumberAnimation>
       offsetY: 100.0,
       initialX: 0.0,
       initialY: 0.0,
-      offsetXPercentage: 0.1,
+      offsetXPercentage: 0.05,
       offsetYPercentage: -0.04,
       child: widget.childBuilder(_animation, _textColor, _shadowColor),
     );
