@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:istorija_srbije/core/constant/screen.dart';
 import 'package:istorija_srbije/core/shared/animations/asset_number.dart';
-import 'package:istorija_srbije/core/shared/widget/diamond_heart_offer.dart';
+import 'package:istorija_srbije/core/shared/widget/offer/diamond_heart_offer.dart';
 
 class Asset extends StatefulWidget {
   final String icon;

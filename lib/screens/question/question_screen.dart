@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:istorija_srbije/core/constant/difficulty_points.dart';
 import 'package:istorija_srbije/core/shared/widget/background_wrapper.dart';
-import 'package:istorija_srbije/core/shared/widget/diamond_heart_offer.dart';
+import 'package:istorija_srbije/core/shared/widget/offer/diamond_heart_offer.dart';
 import 'package:istorija_srbije/provider/user/user_provider.dart';
 import 'package:istorija_srbije/screens/question/service/help_service.dart';
 import 'package:istorija_srbije/screens/question/service/question_service.dart';
