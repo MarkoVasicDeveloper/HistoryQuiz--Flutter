@@ -18,7 +18,7 @@ class MultiplayerState extends State<Multiplayer> {
   void initState() {
     super.initState();
 
-    socketService = SocketService();
+    socketService = SocketService(userProvider: widget.userProvider);
     socketService.connectToServer();
   }
 

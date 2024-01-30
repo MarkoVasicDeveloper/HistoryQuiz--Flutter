@@ -3,19 +3,22 @@ class MultiplayerModel {
   int ruunerUp;
   int thirdPlace;
   String currentStage;
+  bool isConnected;
 
   MultiplayerModel(
       {required this.champion,
       required this.ruunerUp,
       required this.thirdPlace,
-      required this.currentStage});
+      required this.currentStage,
+      required this.isConnected});
 
   factory MultiplayerModel.fromJson(Map<String, dynamic> json) {
     return MultiplayerModel(
         champion: json['champion'],
         ruunerUp: json['ruunerUp'],
         thirdPlace: json['thirdPlace'],
-        currentStage: json['currentStage']);
+        currentStage: json['currentStage'],
+        isConnected: json['isConnected']);
   }
 
   Map<String, dynamic> toJson() {
@@ -23,7 +26,8 @@ class MultiplayerModel {
       'champion': champion,
       'ruunerUp': ruunerUp,
       'thirdPlace': thirdPlace,
-      'currentStage': currentStage
+      'currentStage': currentStage,
+      'isConnected': isConnected
     };
   }
 }

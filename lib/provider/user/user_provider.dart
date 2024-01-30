@@ -26,7 +26,11 @@ class UserProvider with ChangeNotifier {
       points: 0,
     ),
     multiplayer: MultiplayerModel(
-        champion: 0, ruunerUp: 0, thirdPlace: 0, currentStage: 'roundOf16'),
+        champion: 0,
+        ruunerUp: 0,
+        thirdPlace: 0,
+        currentStage: 'roundOf16',
+        isConnected: false),
   );
 
   UserProvider(this._userService);
@@ -149,6 +153,12 @@ class UserProvider with ChangeNotifier {
 
   void setCurrentStage(String stage) {
     _userModel.setCurrentStage(stage);
+    _userService.saveUserDataToFile(_userModel);
+    notifyListeners();
+  }
+
+  void setIsConnected(bool connect) {
+    _userModel.setIsConnected(connect);
     _userService.saveUserDataToFile(_userModel);
     notifyListeners();
   }

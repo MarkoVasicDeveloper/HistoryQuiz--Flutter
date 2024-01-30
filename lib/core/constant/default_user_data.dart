@@ -15,4 +15,11 @@ const defaultData = {
     "currentInRow": 0,
     "points": 0
   },
+  "multiplayer": {
+    "champion": 0,
+    "ruunerUp": 0,
+    "thirdPlace": 0,
+    "currentStage": "roundOf16",
+    "isConnected": false
+  }
 };

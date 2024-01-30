@@ -127,6 +127,10 @@ class UserModel {
     multiplayer.currentStage = stage;
   }
 
+  void setIsConnected(bool connect) {
+    multiplayer.isConnected = connect;
+  }
+
   Map<String, dynamic> toJson() {
     return {
       'username': username,
