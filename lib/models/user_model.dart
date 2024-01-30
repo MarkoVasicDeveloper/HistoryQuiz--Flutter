@@ -1,4 +1,5 @@
 import 'package:istorija_srbije/models/log_model.dart';
+import 'package:istorija_srbije/models/multiplayer_model.dart';
 import 'package:istorija_srbije/models/settings_model.dart';
 import 'package:istorija_srbije/models/succes_model.dart';
 
@@ -11,29 +12,30 @@ class UserModel {
   int round;
   SettingsModel settings;
   SuccessModel success;
+  MultiplayerModel multiplayer;
 
-  UserModel({
-    required this.username,
-    required this.hearts,
-    required this.diamonds,
-    required this.log,
-    required this.freeSpin,
-    required this.round,
-    required this.settings,
-    required this.success,
-  });
+  UserModel(
+      {required this.username,
+      required this.hearts,
+      required this.diamonds,
+      required this.log,
+      required this.freeSpin,
+      required this.round,
+      required this.settings,
+      required this.success,
+      required this.multiplayer});
 
   factory UserModel.fromJson(Map<String, dynamic> json) {
     return UserModel(
-      username: json['username'],
-      hearts: json['hearts'],
-      diamonds: json['diamonds'],
-      log: LogModel.fromJson(json['log']),
-      freeSpin: json['freeSpin'],
-      round: json['round'],
-      settings: SettingsModel.fromJson(json['settings']),
-      success: SuccessModel.fromJson(json['success']),
-    );
+        username: json['username'],
+        hearts: json['hearts'],
+        diamonds: json['diamonds'],
+        log: LogModel.fromJson(json['log']),
+        freeSpin: json['freeSpin'],
+        round: json['round'],
+        settings: SettingsModel.fromJson(json['settings']),
+        success: SuccessModel.fromJson(json['success']),
+        multiplayer: MultiplayerModel.fromJson(json['multiplayer']));
   }
 
   void setUsername(String newUsername) {
@@ -109,6 +111,22 @@ class UserModel {
     success.points += points;
   }
 
+  void setChampion() {
+    multiplayer.champion++;
+  }
+
+  void setRuunerUp() {
+    multiplayer.ruunerUp++;
+  }
+
+  void setThirdPlace() {
+    multiplayer.thirdPlace++;
+  }
+
+  void setCurrentStage(String stage) {
+    multiplayer.currentStage = stage;
+  }
+
   Map<String, dynamic> toJson() {
     return {
       'username': username,
@@ -119,6 +137,7 @@ class UserModel {
       'round': round,
       'settings': settings.toJson(),
       'success': success.toJson(),
+      'multiplayer': multiplayer.toJson(),
     };
   }
 }

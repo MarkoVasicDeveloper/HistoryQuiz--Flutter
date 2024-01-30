@@ -9,16 +9,19 @@ class SocketService {
       'reconnection': false,
     });
 
-    socket.on('connect', (_) {
-      print('Povezivanje uspešno!');
+    socket.on('connect', (data) {
+      print('Connection success');
+      // send register data
+
+      // socket.emit('register', podaciZaSlanje);
     });
 
     socket.on('connect_error', (data) {
-      print('Greška prilikom povezivanja: $data');
+      print('Error: $data');
     });
 
     socket.on('disconnect', (_) {
-      print('Odspajanje od servera');
+      print('disconnect');
     });
   }
 

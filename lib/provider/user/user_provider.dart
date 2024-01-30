@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:istorija_srbije/models/log_model.dart';
+import 'package:istorija_srbije/models/multiplayer_model.dart';
 import 'package:istorija_srbije/models/settings_model.dart';
 import 'package:istorija_srbije/models/succes_model.dart';
 import 'package:istorija_srbije/models/user_model.dart';
@@ -24,6 +25,8 @@ class UserProvider with ChangeNotifier {
       currentInRow: 0,
       points: 0,
     ),
+    multiplayer: MultiplayerModel(
+        champion: 0, ruunerUp: 0, thirdPlace: 0, currentStage: 'roundOf16'),
   );
 
   UserProvider(this._userService);
@@ -122,6 +125,30 @@ class UserProvider with ChangeNotifier {
 
   void setPoints(int points) {
     _userModel.setPoints(points);
+    _userService.saveUserDataToFile(_userModel);
+    notifyListeners();
+  }
+
+  void setChampion() {
+    _userModel.setChampion();
+    _userService.saveUserDataToFile(_userModel);
+    notifyListeners();
+  }
+
+  void setRuunerUp() {
+    _userModel.setRuunerUp();
+    _userService.saveUserDataToFile(_userModel);
+    notifyListeners();
+  }
+
+  void setThirdPlace() {
+    _userModel.setThirdPlace();
+    _userService.saveUserDataToFile(_userModel);
+    notifyListeners();
+  }
+
+  void setCurrentStage(String stage) {
+    _userModel.setCurrentStage(stage);
     _userService.saveUserDataToFile(_userModel);
     notifyListeners();
   }
