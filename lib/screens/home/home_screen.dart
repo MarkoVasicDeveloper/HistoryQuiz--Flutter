@@ -72,9 +72,17 @@ class HomeState extends State<HomeScreen> {
               ),
               const HomeTitle(),
               const HomeImg(),
-              NavigateButton(
-                  onPress: () => Navigator.pushNamed(context, '/questions'),
-                  title: 'Pocni kviz'),
+              Column(
+                children: [
+                  NavigateButton(
+                      onPress: () => Navigator.pushNamed(context, '/questions'),
+                      title: 'Pocni kviz'),
+                  NavigateButton(
+                      onPress: () =>
+                          Navigator.pushNamed(context, '/multiplayer'),
+                      title: 'Turniri'),
+                ],
+              )
             ],
           ),
         ),
