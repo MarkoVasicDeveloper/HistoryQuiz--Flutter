@@ -5,30 +5,40 @@ import 'package:socket_io_client/socket_io_client.dart' as IO;
 class SocketService {
   late IO.Socket socket;
   final UserProvider _userProvider;
+  late void Function(bool isConnected) onConnectionChanged;
 
   SocketService({required UserProvider userProvider})
       : _userProvider = userProvider;
 
   void connectToServer() {
+    final userModel = _userProvider.userModel;
     socket = IO.io(socketServer, <String, dynamic>{
       'reconnection': false,
     });
 
     socket.on('connect', (data) {
       _userProvider.setIsConnected(true);
+      onConnectionChanged(true);
       print('Connection success');
-      // send register data
 
-      // socket.emit('register', podaciZaSlanje);
+      final registerData = {
+        'username': userModel.username,
+        'success': userModel.success.procentage,
+        'stage': userModel.multiplayer.currentStage
+      };
+
+      socket.emit('register', registerData);
     });
 
     socket.on('connect_error', (data) {
       _userProvider.setIsConnected(false);
+      onConnectionChanged(false);
       print('Error: $data');
     });
 
     socket.on('disconnect', (_) {
       _userProvider.setIsConnected(false);
+      onConnectionChanged(false);
       print('disconnect');
     });
   }
