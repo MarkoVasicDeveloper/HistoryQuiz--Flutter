@@ -20,6 +20,8 @@ const defaultData = {
     "ruunerUp": 0,
     "thirdPlace": 0,
     "currentStage": "roundOf16",
-    "isConnected": false
+    "isConnected": false,
+    "opponentAvailable": false,
+    "opponent": {"username": '', "points": 0}
   }
 };

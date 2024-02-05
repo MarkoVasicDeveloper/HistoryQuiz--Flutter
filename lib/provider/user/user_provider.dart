@@ -26,11 +26,14 @@ class UserProvider with ChangeNotifier {
       points: 0,
     ),
     multiplayer: MultiplayerModel(
-        champion: 0,
-        ruunerUp: 0,
-        thirdPlace: 0,
-        currentStage: 'roundOf16',
-        isConnected: false),
+      champion: 0,
+      ruunerUp: 0,
+      thirdPlace: 0,
+      currentStage: 'roundOf16',
+      isConnected: false,
+      opponentAvailable: false,
+      opponent: OpponentModel(username: '', points: 0),
+    ),
   );
 
   UserProvider(this._userService);
@@ -159,6 +162,18 @@ class UserProvider with ChangeNotifier {
 
   void setIsConnected(bool connect) {
     _userModel.setIsConnected(connect);
+    _userService.saveUserDataToFile(_userModel);
+    notifyListeners();
+  }
+
+  void setOpponentAvailable(bool available) {
+    _userModel.setOpponentAvailable(available);
+    _userService.saveUserDataToFile(_userModel);
+    notifyListeners();
+  }
+
+  void setOpponent(OpponentModel opponent) {
+    _userModel.setOpponent(opponent);
     _userService.saveUserDataToFile(_userModel);
     notifyListeners();
   }

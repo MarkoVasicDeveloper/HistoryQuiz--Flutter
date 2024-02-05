@@ -6,6 +6,7 @@ import 'package:istorija_srbije/provider/user/user_provider.dart';
 import 'package:istorija_srbije/provider/user/user_service.dart';
 import 'package:istorija_srbije/screens/home/home_screen.dart';
 import 'package:istorija_srbije/screens/multiplayer/multiplayer_screen.dart';
+import 'package:istorija_srbije/screens/multiplayer_intro/mulstiplayer_intro_screen.dart';
 import 'package:istorija_srbije/screens/question/question_screen.dart';
 import 'package:istorija_srbije/screens/wheel/wheel_screen.dart';
 import 'package:provider/provider.dart';
@@ -62,6 +63,8 @@ class MyApp extends StatelessWidget {
                 QuestionScreen(userProvider: userProvider),
             '/multiplayer': (context) =>
                 Multiplayer(userProvider: userProvider),
+            '/multiplayer_intro': (context) =>
+                MultiplayerIntroScreen(userProvider: userProvider)
           },
         ),
       ),

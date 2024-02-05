@@ -32,26 +32,6 @@ class MultiplayerState extends State<Multiplayer> {
 
     socketService = SocketService(userProvider: widget.userProvider);
     socketService.connectToServer();
-
-    socketService.onConnectionChanged = (isConnected, isPlayer) {
-      setState(() {
-        connect = isConnected;
-        noPlayer = isPlayer;
-      });
-    };
-
-    socketService.onRegistrationResponse = (isRecived) {
-      setState(() {
-        isWait = isRecived;
-      });
-    };
-
-    socketService.setOpponent = (data) {
-      setState(() {
-        opponent = {'username': data['username'], 'points': data['points']};
-        triangleIsVisible = true;
-      });
-    };
   }
 
   void loadQuestions() {}
@@ -69,7 +49,6 @@ class MultiplayerState extends State<Multiplayer> {
               isVisible: isWait,
               onTimerFinish: () => setState(() {
                 isWait = !isWait;
-                // triangleIsVisible = !triangleIsVisible;
               }),
             ),
             Triangle(

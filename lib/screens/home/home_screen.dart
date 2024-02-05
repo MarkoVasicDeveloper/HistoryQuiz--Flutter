@@ -79,7 +79,7 @@ class HomeState extends State<HomeScreen> {
                       title: 'Pocni kviz'),
                   NavigateButton(
                       onPress: () =>
-                          Navigator.pushNamed(context, '/multiplayer'),
+                          Navigator.pushNamed(context, '/multiplayer_intro'),
                       title: 'Turniri'),
                 ],
               )

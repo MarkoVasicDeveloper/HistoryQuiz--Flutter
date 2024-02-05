@@ -131,6 +131,14 @@ class UserModel {
     multiplayer.isConnected = connect;
   }
 
+  void setOpponentAvailable(bool available) {
+    multiplayer.opponentAvailable = available;
+  }
+
+  void setOpponent(OpponentModel opponent) {
+    multiplayer.opponent = opponent;
+  }
+
   Map<String, dynamic> toJson() {
     return {
       'username': username,
