@@ -15,15 +15,16 @@ class AnswerContainer extends StatelessWidget {
     bool resetIndexAction,
     int newIndex,
   }) updateState;
+  final bool isTournament;
 
-  const AnswerContainer({
-    super.key,
-    required this.currentQuestion,
-    required this.questionsService,
-    required this.currentQuestionIndex,
-    required this.userProvider,
-    required this.updateState,
-  });
+  const AnswerContainer(
+      {super.key,
+      required this.currentQuestion,
+      required this.questionsService,
+      required this.currentQuestionIndex,
+      required this.userProvider,
+      required this.updateState,
+      this.isTournament = false});
 
   @override
   Widget build(BuildContext context) {

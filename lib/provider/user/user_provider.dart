@@ -26,14 +26,21 @@ class UserProvider with ChangeNotifier {
       points: 0,
     ),
     multiplayer: MultiplayerModel(
-      champion: 0,
-      ruunerUp: 0,
-      thirdPlace: 0,
-      currentStage: 'roundOf16',
-      isConnected: false,
-      opponentAvailable: false,
-      opponent: OpponentModel(username: '', points: 0, round: 0),
-    ),
+        champion: 0,
+        ruunerUp: 0,
+        thirdPlace: 0,
+        currentStage: 'roundOf16',
+        isConnected: false,
+        opponentAvailable: false,
+        opponent: OpponentModel(
+          username: '',
+          points: 0,
+          round: 0,
+        ),
+        currentAnswer: '',
+        currentOpponentAnswer: '',
+        score: 0,
+        opponentScore: 0),
   );
 
   UserProvider(this._userService);
@@ -175,6 +182,27 @@ class UserProvider with ChangeNotifier {
   void setOpponent(OpponentModel opponent) {
     _userModel.setOpponent(opponent);
     _userService.saveUserDataToFile(_userModel);
+    notifyListeners();
+  }
+
+  void setCurrentAnswer(String answer) {
+    _userModel.setCurrentAnswer(answer);
+    notifyListeners();
+  }
+
+  void setOpponentCurrentAnswer(String answer) {
+    _userModel.setOpponentCurrentAnswer(answer);
+    notifyListeners();
+  }
+
+  void setScore({int? score}) {
+    _userModel.setScore(score ?? _userModel.multiplayer.score + 1);
+    notifyListeners();
+  }
+
+  void setOpponentScore({int? score}) {
+    _userModel
+        .setOpponentScore(score ?? _userModel.multiplayer.opponentScore + 1);
     notifyListeners();
   }
 }

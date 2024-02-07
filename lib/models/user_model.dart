@@ -139,6 +139,22 @@ class UserModel {
     multiplayer.opponent = opponent;
   }
 
+  void setCurrentAnswer(String answer) {
+    multiplayer.currentAnswer = answer;
+  }
+
+  void setOpponentCurrentAnswer(String answer) {
+    multiplayer.currentOpponentAnswer = answer;
+  }
+
+  void setScore(int score) {
+    multiplayer.score = score;
+  }
+
+  void setOpponentScore(int score) {
+    multiplayer.opponentScore = score;
+  }
+
   Map<String, dynamic> toJson() {
     return {
       'username': username,
