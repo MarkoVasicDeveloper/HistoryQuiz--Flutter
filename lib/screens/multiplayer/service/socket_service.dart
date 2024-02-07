@@ -12,6 +12,7 @@ class SocketService {
   void connectToServer() {
     final userModel = _userProvider.userModel;
     socket = io.io(socketServer, <String, dynamic>{
+      'transports': ['websocket'],
       'reconnection': false,
     });
 
@@ -20,20 +21,25 @@ class SocketService {
 
       final registerData = {
         'username': userModel.username,
-        'success': userModel.success.procentage,
+        'success': userModel.success.points,
         'stage': userModel.multiplayer.currentStage
       };
 
       socket.emit('register', registerData);
     });
 
+    socket.on(
+        'answer',
+        (answer) => {
+              // answer is a string
+            });
+
     socket.on('connect_error', (data) {
       _userProvider.setIsConnected(false);
     });
 
     socket.on('registrationResponse', (data) {
-      if (data['succes']) _userProvider.setOpponentAvailable(true);
-      if (data['failed']) _userProvider.setOpponentAvailable(false);
+      _userProvider.setOpponentAvailable(data['availablePlayer']);
     });
 
     socket.on('opponent', (data) => {_userProvider.setOpponent(data)});

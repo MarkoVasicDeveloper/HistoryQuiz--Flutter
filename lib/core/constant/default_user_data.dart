@@ -22,6 +22,6 @@ const defaultData = {
     "currentStage": "roundOf16",
     "isConnected": false,
     "opponentAvailable": false,
-    "opponent": {"username": '', "points": 0}
+    "opponent": {"username": '', "points": 0, "round": 0}
   }
 };

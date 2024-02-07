@@ -32,7 +32,7 @@ class UserProvider with ChangeNotifier {
       currentStage: 'roundOf16',
       isConnected: false,
       opponentAvailable: false,
-      opponent: OpponentModel(username: '', points: 0),
+      opponent: OpponentModel(username: '', points: 0, round: 0),
     ),
   );
 

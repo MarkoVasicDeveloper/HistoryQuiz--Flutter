@@ -1,1 +1,1 @@
-const socketServer = 'https://washersoftware.com';
+const socketServer = 'http://localhost:3000';

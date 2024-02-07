@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:istorija_srbije/core/constant/screen.dart';
 import 'package:istorija_srbije/provider/user/user_provider.dart';
-import 'package:istorija_srbije/screens/multiplayer/service/socket_service.dart';
 import 'package:istorija_srbije/screens/multiplayer/widget/countdown_timer.dart';
 import 'package:istorija_srbije/screens/multiplayer/widget/triangle.dart';
 import 'package:istorija_srbije/screens/question/service/question_service.dart';
@@ -16,25 +15,43 @@ class Multiplayer extends StatefulWidget {
 }
 
 class MultiplayerState extends State<Multiplayer> {
-  late SocketService socketService;
-  late bool connect = false;
   late bool isWait;
   late bool triangleIsVisible;
   late QuestionsService questionsService;
-  late bool? noPlayer;
-  late Map<String, dynamic> opponent;
+  late int currentQuestionIndex;
 
   @override
   void initState() {
     super.initState();
     isWait = true;
     triangleIsVisible = false;
+    currentQuestionIndex = 0;
 
-    socketService = SocketService(userProvider: widget.userProvider);
-    socketService.connectToServer();
+    questionsService = QuestionsService(
+      context: context,
+      onLoadingStateChanged: (bool loading) {
+        if (mounted) {
+          setState(() {
+            triangleIsVisible = triangleIsVisible;
+          });
+        }
+      },
+      userProvider: widget.userProvider,
+      index: currentQuestionIndex,
+    );
+
+    loadQuestions();
   }
 
-  void loadQuestions() {}
+  void loadQuestions() {
+    final multiplayer = widget.userProvider.userModel.multiplayer;
+    if (multiplayer.isConnected && multiplayer.opponentAvailable) {
+      questionsService.loadQuestions(tournament: multiplayer.opponent.round);
+      return;
+    }
+
+    questionsService.loadQuestions();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -65,7 +82,7 @@ class MultiplayerState extends State<Multiplayer> {
             ),
             ElevatedButton(
                 onPressed: () => setState(() {
-                      isWait = !isWait;
+                      print(questionsService.questions[0]);
                     }),
                 child: const Text('press')),
           ],

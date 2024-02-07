@@ -44,20 +44,19 @@ class MultiplayerModel {
 class OpponentModel {
   String username;
   int points;
+  int round;
 
-  OpponentModel({required this.username, required this.points});
+  OpponentModel(
+      {required this.username, required this.points, required this.round});
 
   factory OpponentModel.fromJson(Map<String, dynamic> json) {
     return OpponentModel(
-      username: json['username'],
-      points: json['points'],
-    );
+        username: json['username'],
+        points: json['points'],
+        round: json['round']);
   }
 
   Map<String, dynamic> toJson() {
-    return {
-      'username': username,
-      'points': points,
-    };
+    return {'username': username, 'points': points, 'round': round};
   }
 }
