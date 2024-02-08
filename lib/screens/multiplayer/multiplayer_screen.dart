@@ -97,6 +97,7 @@ class MultiplayerState extends State<Multiplayer> {
                     QuestionsAssets(userProvider: widget.userProvider),
                     QuestionContainer(question: currentQuestion['body']),
                     AnswerContainer(
+                        isTournament: true,
                         currentQuestion: currentQuestion,
                         questionsService: questionsService,
                         currentQuestionIndex: currentQuestionIndex,
@@ -117,17 +118,22 @@ class MultiplayerState extends State<Multiplayer> {
                 isVisible: triangleIsVisible,
                 left: true,
                 username: widget.userProvider.userModel.username,
-                points: widget.userProvider.userModel.success.points,
+                points: currentQuestionIndex == 0
+                    ? widget.userProvider.userModel.success.points
+                    : widget.userProvider.userModel.multiplayer.score,
               ),
               Triangle(
                 isVisible: triangleIsVisible,
                 left: false,
-                username: 'Predrag',
-                points: 1590,
+                username:
+                    widget.userProvider.userModel.multiplayer.opponent.username,
+                points: currentQuestionIndex == 0
+                    ? widget.userProvider.userModel.multiplayer.opponent.points
+                    : widget.userProvider.userModel.multiplayer.opponentScore,
               ),
               ElevatedButton(
                   onPressed: () => setState(() {
-                        print(questionsService.questions[0]);
+                        triangleIsVisible = !triangleIsVisible;
                       }),
                   child: const Text('press')),
             ],

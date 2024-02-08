@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:istorija_srbije/provider/user/user_provider.dart';
+import 'package:istorija_srbije/screens/multiplayer/service/check_tournament_answer.dart';
 import 'package:istorija_srbije/screens/question/service/check_answer.dart';
 import 'package:istorija_srbije/screens/question/service/question_service.dart';
 import 'package:istorija_srbije/screens/question/widget/answers/answer.dart';
@@ -39,9 +40,25 @@ class AnswerContainer extends StatelessWidget {
               Answer(
                   answer: answer,
                   callback: () async {
-                    final index = await checkAnswer(answer.toString(), context,
-                        questionsService, currentQuestionIndex, userProvider);
-                    updateState(newIndex: index);
+                    if (isTournament) {
+                      final index = checkTournamentAnswer(
+                        currentQuestion,
+                        userProvider,
+                        answer,
+                        currentQuestionIndex,
+                        questionsService,
+                      );
+
+                      if (index != -1) updateState(newIndex: index);
+                    } else {
+                      final index = await checkAnswer(
+                          answer.toString(),
+                          context,
+                          questionsService,
+                          currentQuestionIndex,
+                          userProvider);
+                      updateState(newIndex: index);
+                    }
                   }),
           ],
         ),
