@@ -29,10 +29,7 @@ class SocketService {
     });
 
     socket.on(
-        'answer',
-        (answer) => {
-              // answer is a string
-            });
+        'answer', (answer) => _userProvider.setOpponentCurrentAnswer(answer));
 
     socket.on('connect_error', (data) {
       _userProvider.setIsConnected(false);
@@ -49,8 +46,8 @@ class SocketService {
     });
   }
 
-  void joinGame(String playerName) {
-    socket.emit('joinGame', {'playerName': playerName});
+  void emitAnswer(String answer) {
+    socket.emit('answer', answer);
   }
 
   void disconnect() {

@@ -25,7 +25,13 @@ class MultiplayerIntroScreenState extends State<MultiplayerIntroScreen> {
   @override
   Widget build(BuildContext context) {
     return ElevatedButton(
-        onPressed: () => Navigator.pushNamed(context, '/multiplayer'),
+        onPressed: () => {
+              Navigator.pushNamed(
+                context,
+                '/multiplayer',
+                arguments: {'socketService': socketService},
+              )
+            },
         child: const Text('Start'));
   }
 }

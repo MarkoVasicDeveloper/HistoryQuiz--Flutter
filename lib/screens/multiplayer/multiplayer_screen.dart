@@ -1,18 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:istorija_srbije/core/constant/screen.dart';
 import 'package:istorija_srbije/provider/user/user_provider.dart';
+import 'package:istorija_srbije/screens/multiplayer/service/socket_service.dart';
 import 'package:istorija_srbije/screens/multiplayer/widget/countdown_timer.dart';
 import 'package:istorija_srbije/screens/multiplayer/widget/triangle.dart';
 import 'package:istorija_srbije/screens/question/service/question_service.dart';
-import 'package:istorija_srbije/screens/question/service/shuffle.dart';
 import 'package:istorija_srbije/screens/question/widget/answers/answers_container.dart';
 import 'package:istorija_srbije/screens/question/widget/question_asset.dart';
 import 'package:istorija_srbije/screens/question/widget/question_container.dart';
 
 class Multiplayer extends StatefulWidget {
   final UserProvider userProvider;
+  final SocketService socketService;
 
-  const Multiplayer({Key? key, required this.userProvider}) : super(key: key);
+  const Multiplayer(
+      {Key? key, required this.userProvider, required this.socketService})
+      : super(key: key);
 
   @override
   MultiplayerState createState() => MultiplayerState();
@@ -25,15 +28,13 @@ class MultiplayerState extends State<Multiplayer> {
   int currentQuestionIndex = 0;
 
   void updateState({
-    bool shuffleAnswersAction = false,
     bool incrementIndexAction = false,
     bool resetIndexAction = false,
     int newIndex = 0,
+    bool? shuffleAnswersAction,
   }) {
     setState(() {
-      if (shuffleAnswersAction) {
-        shuffleAnswers(questionsService.questions[currentQuestionIndex]);
-      } else if (incrementIndexAction) {
+      if (incrementIndexAction) {
         currentQuestionIndex++;
       } else if (resetIndexAction) {
         currentQuestionIndex = 0;
@@ -97,12 +98,14 @@ class MultiplayerState extends State<Multiplayer> {
                     QuestionsAssets(userProvider: widget.userProvider),
                     QuestionContainer(question: currentQuestion['body']),
                     AnswerContainer(
-                        isTournament: true,
-                        currentQuestion: currentQuestion,
-                        questionsService: questionsService,
-                        currentQuestionIndex: currentQuestionIndex,
-                        userProvider: widget.userProvider,
-                        updateState: updateState)
+                      isTournament: true,
+                      currentQuestion: currentQuestion,
+                      questionsService: questionsService,
+                      currentQuestionIndex: currentQuestionIndex,
+                      userProvider: widget.userProvider,
+                      updateState: updateState,
+                      socketService: widget.socketService,
+                    )
                   ],
                 ),
               ),

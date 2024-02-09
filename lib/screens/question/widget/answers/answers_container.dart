@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:istorija_srbije/provider/user/user_provider.dart';
 import 'package:istorija_srbije/screens/multiplayer/service/check_tournament_answer.dart';
+import 'package:istorija_srbije/screens/multiplayer/service/socket_service.dart';
 import 'package:istorija_srbije/screens/question/service/check_answer.dart';
 import 'package:istorija_srbije/screens/question/service/question_service.dart';
 import 'package:istorija_srbije/screens/question/widget/answers/answer.dart';
@@ -11,12 +12,13 @@ class AnswerContainer extends StatelessWidget {
   final int currentQuestionIndex;
   final UserProvider userProvider;
   final dynamic Function({
-    bool shuffleAnswersAction,
+    bool? shuffleAnswersAction,
     bool incrementIndexAction,
     bool resetIndexAction,
     int newIndex,
   }) updateState;
   final bool isTournament;
+  final SocketService? socketService;
 
   const AnswerContainer(
       {super.key,
@@ -25,7 +27,8 @@ class AnswerContainer extends StatelessWidget {
       required this.currentQuestionIndex,
       required this.userProvider,
       required this.updateState,
-      this.isTournament = false});
+      this.isTournament = false,
+      this.socketService});
 
   @override
   Widget build(BuildContext context) {
@@ -42,12 +45,12 @@ class AnswerContainer extends StatelessWidget {
                 callback: () async {
                   if (isTournament) {
                     final index = checkTournamentAnswer(
-                      currentQuestion,
-                      userProvider,
-                      answer,
-                      currentQuestionIndex,
-                      questionsService,
-                    );
+                        currentQuestion,
+                        userProvider,
+                        answer,
+                        currentQuestionIndex,
+                        questionsService,
+                        socketService!);
 
                     if (index != -1) updateState(newIndex: index);
                   } else {

@@ -6,6 +6,7 @@ import 'package:istorija_srbije/provider/user/user_provider.dart';
 import 'package:istorija_srbije/provider/user/user_service.dart';
 import 'package:istorija_srbije/screens/home/home_screen.dart';
 import 'package:istorija_srbije/screens/multiplayer/multiplayer_screen.dart';
+import 'package:istorija_srbije/screens/multiplayer/service/socket_service.dart';
 import 'package:istorija_srbije/screens/multiplayer_intro/multiplayer_intro_screen.dart';
 import 'package:istorija_srbije/screens/question/question_screen.dart';
 import 'package:istorija_srbije/screens/wheel/wheel_screen.dart';
@@ -61,8 +62,15 @@ class MyApp extends StatelessWidget {
                 ),
             '/questions': (context) =>
                 QuestionScreen(userProvider: userProvider),
-            '/multiplayer': (context) =>
-                Multiplayer(userProvider: userProvider),
+            '/multiplayer': (context) {
+              final args = ModalRoute.of(context)!.settings.arguments
+                  as Map<String, dynamic>;
+              final socketService = args['socketService'] as SocketService;
+              return Multiplayer(
+                userProvider: userProvider,
+                socketService: socketService,
+              );
+            },
             '/multiplayer_intro': (context) =>
                 MultiplayerIntroScreen(userProvider: userProvider)
           },

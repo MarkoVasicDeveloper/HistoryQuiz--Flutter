@@ -1,6 +1,7 @@
 import 'dart:math';
 
 import 'package:istorija_srbije/provider/user/user_provider.dart';
+import 'package:istorija_srbije/screens/multiplayer/service/socket_service.dart';
 import 'package:istorija_srbije/screens/question/service/question_service.dart';
 
 int checkTournamentAnswer(
@@ -8,10 +9,13 @@ int checkTournamentAnswer(
     UserProvider userProvider,
     String userAnswer,
     int currentQuestionsIndex,
-    QuestionsService loadQuestions) {
+    QuestionsService loadQuestions,
+    SocketService socketService) {
   final isConnected = userProvider.userModel.multiplayer.isConnected;
   final opponentAvailable =
       userProvider.userModel.multiplayer.opponentAvailable;
+
+  if (isConnected && opponentAvailable) socketService.emitAnswer(userAnswer);
 
   if (userAnswer == currentQuestion['correctAnswer']) {
     userProvider.setScore();

@@ -26,13 +26,13 @@ class QuestionScreenState extends State<QuestionScreen> {
   final offer = const DiamondsHeartsOffer();
 
   void updateState({
-    bool shuffleAnswersAction = false,
+    bool? shuffleAnswersAction = false,
     bool incrementIndexAction = false,
     bool resetIndexAction = false,
     int newIndex = 0,
   }) {
     setState(() {
-      if (shuffleAnswersAction) {
+      if (shuffleAnswersAction != null) {
         shuffleAnswers(questionsService.questions[currentQuestionIndex]);
       } else if (incrementIndexAction) {
         currentQuestionIndex++;
