@@ -38,28 +38,27 @@ class AnswerContainer extends StatelessWidget {
           children: [
             for (String answer in currentQuestion['answers'])
               Answer(
-                  answer: answer,
-                  callback: () async {
-                    if (isTournament) {
-                      final index = checkTournamentAnswer(
-                        currentQuestion,
-                        userProvider,
-                        answer,
-                        currentQuestionIndex,
-                        questionsService,
-                      );
+                answer: answer,
+                callback: () async {
+                  if (isTournament) {
+                    final index = checkTournamentAnswer(
+                      currentQuestion,
+                      userProvider,
+                      answer,
+                      currentQuestionIndex,
+                      questionsService,
+                    );
 
-                      if (index != -1) updateState(newIndex: index);
-                    } else {
-                      final index = await checkAnswer(
-                          answer.toString(),
-                          context,
-                          questionsService,
-                          currentQuestionIndex,
-                          userProvider);
-                      updateState(newIndex: index);
-                    }
-                  }),
+                    if (index != -1) updateState(newIndex: index);
+                  } else {
+                    final index = await checkAnswer(answer.toString(), context,
+                        questionsService, currentQuestionIndex, userProvider);
+                    updateState(newIndex: index);
+                  }
+                },
+                opponentAnswer:
+                    userProvider.userModel.multiplayer.currentOpponentAnswer,
+              ),
           ],
         ),
       ),
