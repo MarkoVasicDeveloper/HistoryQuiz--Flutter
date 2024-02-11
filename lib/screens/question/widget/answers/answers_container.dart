@@ -12,7 +12,7 @@ class AnswerContainer extends StatelessWidget {
   final int currentQuestionIndex;
   final UserProvider userProvider;
   final dynamic Function({
-    bool? shuffleAnswersAction,
+    bool shuffleAnswersAction,
     bool incrementIndexAction,
     bool resetIndexAction,
     int newIndex,
@@ -44,7 +44,7 @@ class AnswerContainer extends StatelessWidget {
                 answer: answer,
                 callback: () async {
                   if (isTournament) {
-                    final index = checkTournamentAnswer(
+                    final tournamentIndex = checkTournamentAnswer(
                         currentQuestion,
                         userProvider,
                         answer,
@@ -52,7 +52,9 @@ class AnswerContainer extends StatelessWidget {
                         questionsService,
                         socketService!);
 
-                    if (index != -1) updateState(newIndex: index);
+                    if (tournamentIndex != -1) {
+                      updateState(newIndex: tournamentIndex);
+                    }
                   } else {
                     final index = await checkAnswer(answer.toString(), context,
                         questionsService, currentQuestionIndex, userProvider);

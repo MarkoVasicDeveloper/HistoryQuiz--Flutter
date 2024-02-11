@@ -1,1 +1,1 @@
-const socketServer = 'http://localhost:3000';
+const socketServer = 'http://192.168.0.125:3000';

@@ -23,10 +23,10 @@ class TriangleState extends State<Triangle> {
   @override
   Widget build(BuildContext context) {
     final matrix = Matrix4.identity()
-      ..translate(widget.isVisible ? 0 : -screenWidth(context), 0);
+      ..translate(widget.isVisible ? 0.0 : -screenWidth(context), 0.0);
 
     final rightMatrix = Matrix4.identity()
-      ..translate(widget.isVisible ? 0 : screenWidth(context), 0);
+      ..translate(widget.isVisible ? 0.0 : screenWidth(context), 0.0);
 
     return AnimatedContainer(
       duration: const Duration(milliseconds: 500),

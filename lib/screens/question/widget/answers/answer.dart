@@ -34,11 +34,11 @@ class AnswerState extends State<Answer> {
       });
     }
 
-    if (widget.opponentAnswer != oldWidget.opponentAnswer) {
-      setState(() {
-        color = const Color.fromARGB(255, 235, 93, 93);
-      });
-    }
+    // if (widget.opponentAnswer != oldWidget.opponentAnswer) {
+    //   setState(() {
+    //     color = const Color.fromARGB(255, 235, 93, 93);
+    //   });
+    // }
   }
 
   @override
@@ -53,7 +53,9 @@ class AnswerState extends State<Answer> {
         },
         child: Container(
           decoration: BoxDecoration(
-              color: color,
+              color: widget.opponentAnswer == widget.answer
+                  ? const Color.fromARGB(255, 235, 93, 93)
+                  : color,
               border: const Border(
                 bottom: BorderSide(color: Colors.black, width: 2),
               ),

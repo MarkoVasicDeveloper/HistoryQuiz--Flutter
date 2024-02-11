@@ -49,13 +49,16 @@ class MultiplayerState extends State<Multiplayer> {
     super.initState();
     isWait = true;
     triangleIsVisible = false;
+    if (widget.userProvider.userModel.multiplayer.isConnected) {
+      widget.socketService.emitStart();
+    }
 
     questionsService = QuestionsService(
       context: context,
       onLoadingStateChanged: (bool loading) {
         if (mounted) {
           setState(() {
-            triangleIsVisible = triangleIsVisible;
+            triangleIsVisible = !triangleIsVisible;
           });
         }
       },
@@ -109,14 +112,6 @@ class MultiplayerState extends State<Multiplayer> {
                   ],
                 ),
               ),
-              CountdownTimer(
-                initialSeconds: 5,
-                eventText: 'Sacekajte protivnika...',
-                isVisible: isWait,
-                onTimerFinish: () => setState(() {
-                  isWait = !isWait;
-                }),
-              ),
               Triangle(
                 isVisible: triangleIsVisible,
                 left: true,
@@ -133,6 +128,28 @@ class MultiplayerState extends State<Multiplayer> {
                 points: currentQuestionIndex == 0
                     ? widget.userProvider.userModel.multiplayer.opponent.points
                     : widget.userProvider.userModel.multiplayer.opponentScore,
+              ),
+              CountdownTimer(
+                userProvider: widget.userProvider,
+                initialSeconds: 15,
+                eventText: 'Sacekajte protivnika...',
+                isVisible: isWait,
+                onTimerFinish: () {
+                  Future.delayed(const Duration(milliseconds: 300), () {
+                    setState(() {
+                      isWait = !isWait;
+                    });
+                  });
+                  setState(() {
+                    triangleIsVisible = true;
+                  });
+
+                  Future.delayed(const Duration(seconds: 3), () {
+                    setState(() {
+                      triangleIsVisible = false;
+                    });
+                  });
+                },
               ),
               ElevatedButton(
                   onPressed: () => setState(() {

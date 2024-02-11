@@ -1,12 +1,14 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:istorija_srbije/core/constant/screen.dart';
+import 'package:istorija_srbije/provider/user/user_provider.dart';
 
 class CountdownTimer extends StatefulWidget {
   final int initialSeconds;
   final Function? onTimerFinish;
   final String eventText;
   final bool isVisible;
+  final UserProvider userProvider;
 
   const CountdownTimer({
     Key? key,
@@ -14,6 +16,7 @@ class CountdownTimer extends StatefulWidget {
     this.onTimerFinish,
     required this.eventText,
     required this.isVisible,
+    required this.userProvider,
   }) : super(key: key);
 
   @override
@@ -38,6 +41,13 @@ class CountdownTimerState extends State<CountdownTimer> {
     countdownTimer = Timer.periodic(const Duration(seconds: 1), (timer) {
       setState(() {
         seconds--;
+
+        if (widget.userProvider.userModel.multiplayer.opponentAvailable) {
+          timer.cancel();
+          if (widget.onTimerFinish != null) {
+            widget.onTimerFinish!();
+          }
+        }
 
         if (seconds == 0) {
           timer.cancel();
