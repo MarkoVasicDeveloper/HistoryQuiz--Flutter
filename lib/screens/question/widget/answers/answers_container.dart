@@ -61,8 +61,7 @@ class AnswerContainer extends StatelessWidget {
                     updateState(newIndex: index);
                   }
                 },
-                opponentAnswer:
-                    userProvider.userModel.multiplayer.currentOpponentAnswer,
+                opponentAnswer: '',
               ),
           ],
         ),

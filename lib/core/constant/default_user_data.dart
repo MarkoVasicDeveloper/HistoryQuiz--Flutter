@@ -23,8 +23,6 @@ const defaultData = {
     "isConnected": false,
     "opponentAvailable": false,
     "opponent": {"username": '', "points": 0, "round": 0},
-    "currentAnswer": "",
-    "currentOpponentAnswer": "",
     "score": 0,
     "opponentScore": 0
   }

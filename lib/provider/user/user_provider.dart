@@ -37,8 +37,6 @@ class UserProvider with ChangeNotifier {
           points: 0,
           round: 0,
         ),
-        currentAnswer: '',
-        currentOpponentAnswer: '',
         score: 0,
         opponentScore: 0),
   );
@@ -182,16 +180,6 @@ class UserProvider with ChangeNotifier {
   void setOpponent(OpponentModel opponent) {
     _userModel.setOpponent(opponent);
     _userService.saveUserDataToFile(_userModel);
-    notifyListeners();
-  }
-
-  void setCurrentAnswer(String answer) {
-    _userModel.setCurrentAnswer(answer);
-    notifyListeners();
-  }
-
-  void setOpponentCurrentAnswer(String answer) {
-    _userModel.setOpponentCurrentAnswer(answer);
     notifyListeners();
   }
 

@@ -20,17 +20,14 @@ class SocketService {
       _userProvider.setIsConnected(true);
     });
 
-    socket.on(
-        'answer', (answer) => _userProvider.setOpponentCurrentAnswer(answer));
+    socket.on('answer', (answer) => '');
 
     socket.on('connect_error', (data) {
       _userProvider.setIsConnected(false);
     });
 
-    socket.on('opponentAvailable', (data) {
-      print(data);
-      _userProvider.setOpponentAvailable(data['availablePlayer']);
-    });
+    socket.on('opponentAvailable',
+        (data) => _userProvider.setOpponentAvailable(data['availablePlayer']));
 
     socket.on('opponent', (data) {
       OpponentModel opponent = OpponentModel.fromJson(data);

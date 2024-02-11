@@ -6,8 +6,6 @@ class MultiplayerModel {
   bool isConnected;
   bool opponentAvailable;
   OpponentModel opponent;
-  String currentAnswer;
-  String currentOpponentAnswer;
   int score;
   int opponentScore;
 
@@ -19,8 +17,6 @@ class MultiplayerModel {
       required this.isConnected,
       required this.opponentAvailable,
       required this.opponent,
-      required this.currentAnswer,
-      required this.currentOpponentAnswer,
       required this.opponentScore,
       required this.score});
 
@@ -33,8 +29,6 @@ class MultiplayerModel {
         isConnected: json['isConnected'],
         opponentAvailable: json['opponentAvailable'],
         opponent: OpponentModel.fromJson(json['opponent']),
-        currentAnswer: json['currentAnswer'],
-        currentOpponentAnswer: json['currentOpponentAnswer'],
         score: json['score'],
         opponentScore: json['opponentScore']);
   }
@@ -48,8 +42,6 @@ class MultiplayerModel {
       'isConnected': isConnected,
       'opponentAvailable': opponentAvailable,
       'opponent': opponent.toJson(),
-      'currentAnswer': currentAnswer,
-      'currentOpponentAnswer': currentOpponentAnswer,
       'score': score,
       'opponentScore': opponentScore
     };

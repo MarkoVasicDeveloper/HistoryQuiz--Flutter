@@ -21,7 +21,7 @@ int checkTournamentAnswer(
     userProvider.setScore();
   }
 
-  userProvider.setCurrentAnswer(userAnswer);
+  // userProvider.setCurrentAnswer(userAnswer);
 
   if (!isConnected || !opponentAvailable) {
     List<dynamic> allAnswers = currentQuestion['answers'];
@@ -31,7 +31,7 @@ int checkTournamentAnswer(
       userProvider.setOpponentScore();
     }
 
-    userProvider.setOpponentCurrentAnswer(opponentAnswer);
+    // userProvider.setOpponentCurrentAnswer(opponentAnswer);
 
     if (currentQuestionsIndex == loadQuestions.questions.length - 1) {
       loadQuestions.loadQuestions();
