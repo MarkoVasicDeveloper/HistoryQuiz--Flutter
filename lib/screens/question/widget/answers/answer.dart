@@ -33,12 +33,6 @@ class AnswerState extends State<Answer> {
         color = const Color(0x66793EA5);
       });
     }
-
-    // if (widget.opponentAnswer != oldWidget.opponentAnswer) {
-    //   setState(() {
-    //     color = const Color.fromARGB(255, 235, 93, 93);
-    //   });
-    // }
   }
 
   @override

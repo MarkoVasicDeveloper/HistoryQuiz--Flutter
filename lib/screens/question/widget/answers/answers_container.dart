@@ -13,6 +13,7 @@ class AnswerContainer extends StatelessWidget {
   final UserProvider userProvider;
   final Function(int newIndex) setIndex;
   final Function({String? user, String? opponent})? setAnswer;
+  final Function(bool triangle)? setTriangle;
   final bool isTournament;
   final SocketService? socketService;
   final String? opponentAnswer;
@@ -25,6 +26,7 @@ class AnswerContainer extends StatelessWidget {
       required this.userProvider,
       required this.setIndex,
       this.setAnswer,
+      this.setTriangle,
       this.isTournament = false,
       this.socketService,
       this.opponentAnswer = ''});
@@ -43,14 +45,15 @@ class AnswerContainer extends StatelessWidget {
                 answer: answer,
                 callback: () async {
                   if (isTournament) {
-                    final tournamentIndex = checkTournamentAnswer(
+                    final tournamentIndex = await checkTournamentAnswer(
                         currentQuestion,
                         userProvider,
                         answer,
                         currentQuestionIndex,
                         questionsService,
                         setAnswer!,
-                        socketService!);
+                        socketService!,
+                        setTriangle!);
 
                     if (tournamentIndex != -1) {
                       setIndex(tournamentIndex);
@@ -61,7 +64,7 @@ class AnswerContainer extends StatelessWidget {
                     setIndex(index);
                   }
                 },
-                opponentAnswer: '',
+                opponentAnswer: opponentAnswer ?? '',
               ),
           ],
         ),

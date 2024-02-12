@@ -25,25 +25,6 @@ class QuestionScreenState extends State<QuestionScreen> {
   int currentQuestionIndex = 0;
   final offer = const DiamondsHeartsOffer();
 
-  // void updateState({
-  //   bool shuffleAnswersAction = false,
-  //   bool incrementIndexAction = false,
-  //   bool resetIndexAction = false,
-  //   int newIndex = 0,
-  // }) {
-  //   setState(() {
-  //     if (shuffleAnswersAction) {
-  //       shuffleAnswers(questionsService.questions[currentQuestionIndex]);
-  //     } else if (incrementIndexAction) {
-  //       currentQuestionIndex++;
-  //     } else if (resetIndexAction) {
-  //       currentQuestionIndex = 0;
-  //     } else {
-  //       currentQuestionIndex = newIndex;
-  //     }
-  //   });
-  // }
-
   void setIndex(int newIndex) {
     setState(() {
       currentQuestionIndex = newIndex;

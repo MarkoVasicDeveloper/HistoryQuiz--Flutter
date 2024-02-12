@@ -29,28 +29,6 @@ class MultiplayerState extends State<Multiplayer> {
   late String opponentAnswer = '';
   late String userAnswer = '';
 
-  // void updateState(
-  //     {bool incrementIndexAction = false,
-  //     bool resetIndexAction = false,
-  //     int newIndex = 0,
-  //     bool? shuffleAnswersAction,
-  //     String opponent = '',
-  //     String answer = ''}) {
-  //   setState(() {
-  //     if (incrementIndexAction) {
-  //       currentQuestionIndex++;
-  //     } else if (resetIndexAction) {
-  //       currentQuestionIndex = 0;
-  //     } else if (opponent.isNotEmpty) {
-  //       opponentAnswer = opponent;
-  //     } else if (userAnswer.isNotEmpty) {
-  //       userAnswer = answer;
-  //     } else {
-  //       currentQuestionIndex = newIndex;
-  //     }
-  //   });
-  // }
-
   void setIndex(int newIndex) {
     setState(() {
       currentQuestionIndex = newIndex;
@@ -61,6 +39,12 @@ class MultiplayerState extends State<Multiplayer> {
     setState(() {
       if (user != null) userAnswer = user;
       if (opponent != null) opponentAnswer = opponent;
+    });
+  }
+
+  void setTriangle(bool triangle) {
+    setState(() {
+      triangleIsVisible = triangle;
     });
   }
 
@@ -128,6 +112,7 @@ class MultiplayerState extends State<Multiplayer> {
                       userProvider: widget.userProvider,
                       setIndex: setIndex,
                       setAnswer: setAnswer,
+                      setTriangle: setTriangle,
                       socketService: widget.socketService,
                       opponentAnswer: opponentAnswer,
                     )
