@@ -26,21 +26,41 @@ class MultiplayerState extends State<Multiplayer> {
   late bool triangleIsVisible;
   late QuestionsService questionsService;
   int currentQuestionIndex = 0;
+  late String opponentAnswer = '';
+  late String userAnswer = '';
 
-  void updateState({
-    bool incrementIndexAction = false,
-    bool resetIndexAction = false,
-    int newIndex = 0,
-    bool? shuffleAnswersAction,
-  }) {
+  // void updateState(
+  //     {bool incrementIndexAction = false,
+  //     bool resetIndexAction = false,
+  //     int newIndex = 0,
+  //     bool? shuffleAnswersAction,
+  //     String opponent = '',
+  //     String answer = ''}) {
+  //   setState(() {
+  //     if (incrementIndexAction) {
+  //       currentQuestionIndex++;
+  //     } else if (resetIndexAction) {
+  //       currentQuestionIndex = 0;
+  //     } else if (opponent.isNotEmpty) {
+  //       opponentAnswer = opponent;
+  //     } else if (userAnswer.isNotEmpty) {
+  //       userAnswer = answer;
+  //     } else {
+  //       currentQuestionIndex = newIndex;
+  //     }
+  //   });
+  // }
+
+  void setIndex(int newIndex) {
     setState(() {
-      if (incrementIndexAction) {
-        currentQuestionIndex++;
-      } else if (resetIndexAction) {
-        currentQuestionIndex = 0;
-      } else {
-        currentQuestionIndex = newIndex;
-      }
+      currentQuestionIndex = newIndex;
+    });
+  }
+
+  void setAnswer({String? user, String? opponent}) {
+    setState(() {
+      if (user != null) userAnswer = user;
+      if (opponent != null) opponentAnswer = opponent;
     });
   }
 
@@ -106,8 +126,10 @@ class MultiplayerState extends State<Multiplayer> {
                       questionsService: questionsService,
                       currentQuestionIndex: currentQuestionIndex,
                       userProvider: widget.userProvider,
-                      updateState: updateState,
+                      setIndex: setIndex,
+                      setAnswer: setAnswer,
                       socketService: widget.socketService,
+                      opponentAnswer: opponentAnswer,
                     )
                   ],
                 ),

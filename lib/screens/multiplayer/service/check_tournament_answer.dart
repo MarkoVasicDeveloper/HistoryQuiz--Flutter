@@ -10,6 +10,7 @@ int checkTournamentAnswer(
     String userAnswer,
     int currentQuestionsIndex,
     QuestionsService loadQuestions,
+    final Function({String? user, String? opponent}) setState,
     SocketService socketService) {
   final isConnected = userProvider.userModel.multiplayer.isConnected;
   final opponentAvailable =
@@ -22,6 +23,7 @@ int checkTournamentAnswer(
   }
 
   // userProvider.setCurrentAnswer(userAnswer);
+  setState(user: userAnswer);
 
   if (!isConnected || !opponentAvailable) {
     List<dynamic> allAnswers = currentQuestion['answers'];
@@ -32,6 +34,7 @@ int checkTournamentAnswer(
     }
 
     // userProvider.setOpponentCurrentAnswer(opponentAnswer);
+    setState(opponent: opponentAnswer);
 
     if (currentQuestionsIndex == loadQuestions.questions.length - 1) {
       loadQuestions.loadQuestions();

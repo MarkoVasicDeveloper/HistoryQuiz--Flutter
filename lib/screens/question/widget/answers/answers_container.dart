@@ -11,14 +11,11 @@ class AnswerContainer extends StatelessWidget {
   final QuestionsService questionsService;
   final int currentQuestionIndex;
   final UserProvider userProvider;
-  final dynamic Function({
-    bool shuffleAnswersAction,
-    bool incrementIndexAction,
-    bool resetIndexAction,
-    int newIndex,
-  }) updateState;
+  final Function(int newIndex) setIndex;
+  final Function({String? user, String? opponent})? setAnswer;
   final bool isTournament;
   final SocketService? socketService;
+  final String? opponentAnswer;
 
   const AnswerContainer(
       {super.key,
@@ -26,9 +23,11 @@ class AnswerContainer extends StatelessWidget {
       required this.questionsService,
       required this.currentQuestionIndex,
       required this.userProvider,
-      required this.updateState,
+      required this.setIndex,
+      this.setAnswer,
       this.isTournament = false,
-      this.socketService});
+      this.socketService,
+      this.opponentAnswer = ''});
 
   @override
   Widget build(BuildContext context) {
@@ -50,15 +49,16 @@ class AnswerContainer extends StatelessWidget {
                         answer,
                         currentQuestionIndex,
                         questionsService,
+                        setAnswer!,
                         socketService!);
 
                     if (tournamentIndex != -1) {
-                      updateState(newIndex: tournamentIndex);
+                      setIndex(tournamentIndex);
                     }
                   } else {
                     final index = await checkAnswer(answer.toString(), context,
                         questionsService, currentQuestionIndex, userProvider);
-                    updateState(newIndex: index);
+                    setIndex(index);
                   }
                 },
                 opponentAnswer: '',

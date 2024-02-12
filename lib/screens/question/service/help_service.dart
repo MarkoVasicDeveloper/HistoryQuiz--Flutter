@@ -7,7 +7,7 @@ import 'package:istorija_srbije/screens/question/service/question_service.dart';
 import 'package:istorija_srbije/screens/question/widget/help/help_alert.dart';
 
 void fifty(Map<String, dynamic> currentQuestion, UserProvider userProvider,
-    DiamondsHeartsOffer offer, BuildContext context, Function updateState) {
+    DiamondsHeartsOffer offer, BuildContext context, Function shuffle) {
   if (currentQuestion['answers'].length == 2) {
     return;
   }
@@ -20,7 +20,7 @@ void fifty(Map<String, dynamic> currentQuestion, UserProvider userProvider,
       icon: 'assets/diamond.png',
       onPress: () {
         int newDiamonds = userProvider.userModel.diamonds - 1;
-        updateState(shuffleAnswersAction: true);
+        shuffle();
         userProvider.setDiamonds(newDiamonds);
         Navigator.of(context).pop();
       });
@@ -32,7 +32,7 @@ void jump(
     BuildContext context,
     int currentQuestionIndex,
     QuestionsService questionsService,
-    Function updateState) {
+    Function setIndex) {
   if (userProvider.userModel.diamonds == 0) {
     return offer.showDiamondsHeartsOffer(context);
   }
@@ -44,10 +44,10 @@ void jump(
       userProvider.setDiamonds(newDiamonds);
       if (currentQuestionIndex == 4) {
         questionsService.loadQuestions();
-        updateState(resetIndexAction: true);
+        setIndex(currentQuestionIndex = 0);
         return Navigator.of(context).pop();
       }
-      updateState(incrementIndexAction: true);
+      setIndex(currentQuestionIndex = ++currentQuestionIndex);
       Navigator.of(context).pop();
     },
     icon: 'assets/diamond.png',

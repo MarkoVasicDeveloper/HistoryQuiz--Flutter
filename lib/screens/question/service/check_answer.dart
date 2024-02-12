@@ -69,7 +69,7 @@ Future<int> checkAnswer(answer, context, QuestionsService loadQuestions,
 
   if (currentQuestionIndex == loadQuestions.questions.length - 1) {
     loadQuestions.loadQuestions();
-    return currentQuestionIndex = 0;
+    return 0;
   }
 
   return ++currentQuestionIndex;

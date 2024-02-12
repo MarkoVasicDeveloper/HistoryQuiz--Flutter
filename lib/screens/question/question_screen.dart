@@ -25,22 +25,34 @@ class QuestionScreenState extends State<QuestionScreen> {
   int currentQuestionIndex = 0;
   final offer = const DiamondsHeartsOffer();
 
-  void updateState({
-    bool shuffleAnswersAction = false,
-    bool incrementIndexAction = false,
-    bool resetIndexAction = false,
-    int newIndex = 0,
-  }) {
+  // void updateState({
+  //   bool shuffleAnswersAction = false,
+  //   bool incrementIndexAction = false,
+  //   bool resetIndexAction = false,
+  //   int newIndex = 0,
+  // }) {
+  //   setState(() {
+  //     if (shuffleAnswersAction) {
+  //       shuffleAnswers(questionsService.questions[currentQuestionIndex]);
+  //     } else if (incrementIndexAction) {
+  //       currentQuestionIndex++;
+  //     } else if (resetIndexAction) {
+  //       currentQuestionIndex = 0;
+  //     } else {
+  //       currentQuestionIndex = newIndex;
+  //     }
+  //   });
+  // }
+
+  void setIndex(int newIndex) {
     setState(() {
-      if (shuffleAnswersAction) {
-        shuffleAnswers(questionsService.questions[currentQuestionIndex]);
-      } else if (incrementIndexAction) {
-        currentQuestionIndex++;
-      } else if (resetIndexAction) {
-        currentQuestionIndex = 0;
-      } else {
-        currentQuestionIndex = newIndex;
-      }
+      currentQuestionIndex = newIndex;
+    });
+  }
+
+  void shuffle() {
+    setState(() {
+      shuffleAnswers(questionsService.questions[currentQuestionIndex]);
     });
   }
 
@@ -97,7 +109,7 @@ class QuestionScreenState extends State<QuestionScreen> {
                     text: '50/50',
                     right: null,
                     onTap: () => fifty(currentQuestion, widget.userProvider,
-                        offer, context, updateState),
+                        offer, context, shuffle),
                     icon: Icons.filter_2_rounded,
                     img: 'assets/diamond.png'),
                 Text(
@@ -112,7 +124,7 @@ class QuestionScreenState extends State<QuestionScreen> {
                     text: 'PRESKOCI',
                     left: null,
                     onTap: () => jump(widget.userProvider, offer, context,
-                        currentQuestionIndex, questionsService, updateState),
+                        currentQuestionIndex, questionsService, setIndex),
                     icon: Icons.skip_next_rounded,
                     img: 'assets/diamond.png')
               ],
@@ -122,7 +134,7 @@ class QuestionScreenState extends State<QuestionScreen> {
                 questionsService: questionsService,
                 currentQuestionIndex: currentQuestionIndex,
                 userProvider: widget.userProvider,
-                updateState: updateState)
+                setIndex: setIndex)
           ],
         ),
       ),
