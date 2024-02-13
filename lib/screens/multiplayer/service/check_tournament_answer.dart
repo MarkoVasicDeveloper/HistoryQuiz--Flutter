@@ -1,5 +1,10 @@
 import 'dart:math';
 
+import 'package:audioplayers/audioplayers.dart';
+import 'package:flutter/material.dart';
+import 'package:istorija_srbije/core/constant/sound.dart';
+import 'package:istorija_srbije/core/global/audio_player.dart';
+import 'package:istorija_srbije/core/shared/animations/tournament_result.dart';
 import 'package:istorija_srbije/provider/user/user_provider.dart';
 import 'package:istorija_srbije/screens/multiplayer/service/socket_service.dart';
 import 'package:istorija_srbije/screens/question/service/question_service.dart';
@@ -12,7 +17,8 @@ Future<int> checkTournamentAnswer(
     QuestionsService loadQuestions,
     final Function({String? user, String? opponent}) setState,
     SocketService socketService,
-    final Function(bool triangle) setTriangle) async {
+    final Function(bool triangle) setTriangle,
+    BuildContext context) async {
   final multiplayer = userProvider.userModel.multiplayer;
   final isConnected = multiplayer.isConnected;
   final opponentAvailable = multiplayer.opponentAvailable;
@@ -52,17 +58,31 @@ Future<int> checkTournamentAnswer(
     if (currentQuestionsIndex == loadQuestions.questions.length - 1) {
       if (score == opponentScore) {
         loadQuestions.loadQuestions();
-        // draw
+        if (context.mounted) {
+          AudioPlayerSingleton().audioPlayer.play(AssetSource(help));
+          await TournamentResultAnimation.showOverlay(
+              userProvider: userProvider, context: context);
+        }
         return 0;
       }
 
-      // win/lose
+      if (context.mounted) {
+        String soundPath = score > opponentScore ? applausePath : badEnd;
+        AudioPlayerSingleton().audioPlayer.play(AssetSource(soundPath));
+        await TournamentResultAnimation.showOverlay(
+            userProvider: userProvider, context: context);
+        userProvider.setOpponentScore(score: 0);
+        userProvider.setScore(score: 0);
+      }
+
+      return -1;
     }
 
     Future.delayed(const Duration(seconds: 3), () {
       setTriangle(false);
     });
 
+    await Future.delayed(const Duration(milliseconds: 300));
     return ++currentQuestionsIndex;
   }
 

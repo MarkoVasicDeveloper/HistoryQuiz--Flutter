@@ -53,10 +53,14 @@ class AnswerContainer extends StatelessWidget {
                         questionsService,
                         setAnswer!,
                         socketService!,
-                        setTriangle!);
+                        setTriangle!,
+                        context);
 
-                    if (tournamentIndex != -1) {
-                      setIndex(tournamentIndex);
+                    if (tournamentIndex != -1) return setIndex(tournamentIndex);
+
+                    if (context.mounted) {
+                      Navigator.pushReplacementNamed(
+                          context, '/multiplayer_intro');
                     }
                   } else {
                     final index = await checkAnswer(answer.toString(), context,

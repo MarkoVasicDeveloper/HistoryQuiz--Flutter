@@ -1,5 +1,6 @@
 import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
+import 'package:istorija_srbije/core/constant/sound.dart';
 import 'package:istorija_srbije/core/global/audio_player.dart';
 import 'package:istorija_srbije/core/shared/widget/offer/diamond_heart_offer.dart';
 import 'package:istorija_srbije/provider/user/user_provider.dart';
@@ -14,7 +15,7 @@ void fifty(Map<String, dynamic> currentQuestion, UserProvider userProvider,
   if (userProvider.userModel.diamonds == 0) {
     return offer.showDiamondsHeartsOffer(context);
   }
-  AudioPlayerSingleton().audioPlayer.play(AssetSource("sounds/help.m4a"));
+  AudioPlayerSingleton().audioPlayer.play(AssetSource(help));
   HelpAlert.showAlertDialog(
       context: context,
       icon: 'assets/diamond.png',
@@ -36,7 +37,7 @@ void jump(
   if (userProvider.userModel.diamonds == 0) {
     return offer.showDiamondsHeartsOffer(context);
   }
-  AudioPlayerSingleton().audioPlayer.play(AssetSource("sounds/help.m4a"));
+  AudioPlayerSingleton().audioPlayer.play(AssetSource(help));
   HelpAlert.showAlertDialog(
     context: context,
     onPress: () {
